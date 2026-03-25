@@ -60,8 +60,8 @@ export default function Appareil3D({
           overflow: "visible",
           left: "50%",
           top: isMobile ? "0" : "50%",
-          width: isMobile ? "420px" : "760px",
-          height: isMobile ? "700px" : "1200px",
+          width: isMobile ? "420px" : "1080px",
+          height: isMobile ? "700px" : "1920px",
           transform: isMobile ? "translateX(-50%)" : "translate(-50%, -50%)",
           marginTop: "0",
         }}
