@@ -3,17 +3,16 @@ import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const DESKTOP_CAMERA_ORBIT = "-5deg 82deg 10m";
-const MOBILE_CAMERA_ORBIT = "-5deg 82deg 11m";
-const BASE_CAMERA_TARGET = "-0.4m 0m 0m";
-const BASE_FOV = "36deg";
-
 type Appareil3DProps = {
   viewerRef: RefObject<any>;
   isLocked: boolean;
   currentTicket: ProjectTicket | null;
   showTicket: boolean;
   onTicketClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  desktopCameraOrbit: string;
+  mobileCameraOrbit: string;
+  cameraTarget: string;
+  fieldOfView: string;
 };
 
 export default function Appareil3D({
@@ -22,6 +21,10 @@ export default function Appareil3D({
   currentTicket,
   showTicket,
   onTicketClick,
+  desktopCameraOrbit,
+  mobileCameraOrbit,
+  cameraTarget,
+  fieldOfView,
 }: Appareil3DProps) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -42,9 +45,9 @@ export default function Appareil3D({
         ref={viewerRef}
         src="/appareil.glb"
         alt="Modèle 3D"
-        camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
-        field-of-view={BASE_FOV}
-        camera-target={BASE_CAMERA_TARGET}
+        camera-orbit={isMobile ? mobileCameraOrbit : desktopCameraOrbit}
+        field-of-view={fieldOfView}
+        camera-target={cameraTarget}
         camera-controls={!isLocked}
         interaction-prompt="none"
         disable-zoom={isLocked}
