@@ -85,9 +85,9 @@ export default function Appareil3D({
         className="absolute z-50 pointer-events-none overflow-visible"
         style={{
           left: "50%",
-          top: isMobile ? "64%" : "61%",
-          width: isMobile ? "120px" : "220px",
-          height: isMobile ? "170px" : "300px",
+          top: isMobile ? "64%" : "57%",
+          width: isMobile ? "145px" : "220px",
+          height: isMobile ? "205px" : "300px",
           transform: "translate(-50%, -50%)",
           marginTop: "0",
         }}
@@ -101,10 +101,10 @@ export default function Appareil3D({
             style={{
               position: "absolute",
               zIndex: 60,
-              top: isMobile ? -12 : -18,
+              top: isMobile ? -12 : -28,
               left: 0,
-              width: isMobile ? "120px" : "220px",
-              height: isMobile ? "150px" : "275px",
+              width: isMobile ? "145px" : "220px",
+              height: isMobile ? "185px" : "275px",
               transform: showTicket ? "translateY(8px)" : "translateY(-90px)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
