@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { RouterProvider } from "react-router";
 import { router } from "./routes";
-import SplashScreenImport from "../imports/SplashScreen";
+import SplashVideo from "..public/projects/splash.MOV";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -14,10 +14,16 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (showSplash) {
+    if (showSplash) {
     return (
-      <div className="min-h-screen w-full bg-background flex items-center justify-center">
-        <SplashScreenImport />
+      <div className="min-h-screen w-full bg-background flex items-center justify-center overflow-hidden">
+        <video
+          src={splashVideo}
+          autoPlay
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        />
       </div>
     );
   }
