@@ -67,7 +67,7 @@ export default function Appareil3D({
             fov: viewer.fieldOfView,
           });
         }}
-        className="absolute z-[999] pointer-events-auto"
+        className="absolute z-10 pointer-events-auto"
         style={{
           display: "block",
           background: "transparent",
@@ -82,7 +82,7 @@ export default function Appareil3D({
       />
 
       <div
-        className="absolute z-[1001] pointer-events-none overflow-visible"
+        className="absolute z-50 pointer-events-none overflow-visible"
         style={{
           left: "50%",
           top: isMobile ? "46%" : "61%",
@@ -99,6 +99,8 @@ export default function Appareil3D({
             aria-label={`Ouvrir le projet ${currentTicket.title}`}
             className="absolute overflow-hidden border border-black/10 bg-white shadow-xl pointer-events-auto transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
+              position: "absolute",
+              zIndex: 60,
               top: isMobile ? -12 : -28,
               left: 0,
               width: isMobile ? "120px" : "160px",
@@ -106,6 +108,8 @@ export default function Appareil3D({
               transform: "translateY(8px)",
               opacity: 1,
               borderRadius: "0px",
+              boxShadow: "0 0 0 4px red",
+              background: "white",
             }}
           >
             <img
