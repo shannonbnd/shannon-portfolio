@@ -45,8 +45,8 @@ export default function PradaPage() {
           className="absolute overflow-hidden"
           style={{
             top: "970px",
-            left: "center",
-            width: "340px",
+            left: "11%",
+            width: "343px",
             height: "500px",
             zIndex: 20,
           }}
