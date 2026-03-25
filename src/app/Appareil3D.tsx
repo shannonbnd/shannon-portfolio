@@ -103,8 +103,8 @@ export default function Appareil3D({
               left: 0,
               width: isMobile ? "120px" : "160px",
               height: isMobile ? "150px" : "200px",
-              transform: showTicket ? "translateY(8px)",
-              opacity: showTicket ? 1,
+              transform: "translateY(8px)",
+              opacity: 1,
               borderRadius: "0px",
             }}
           >
