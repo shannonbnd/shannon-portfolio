@@ -50,33 +50,47 @@ export default function Appareil3D({
         ref={viewerRef}
         src="/appareil.glb"
         alt="Modèle 3D"
-       camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
-       field-of-view={isMobile ? MOBILE_FOV : DESKTOP_FOV}
-       camera-target={isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET}
+        camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
+        field-of-view={isMobile ? MOBILE_FOV : DESKTOP_FOV}
+        camera-target={isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET}
         camera-controls={!isLocked}
         interaction-prompt="none"
         disable-zoom={isLocked}
         reveal="auto"
         poster="/poster-appareil.png"
         onLoad={() => {
-  const viewer = viewerRef.current;
-  if (!viewer) return;
-  const mobile = typeof window !== "undefined" && window.innerWidth < 768;
+          const viewer = viewerRef.current;
+          if (!viewer) return;
 
-  const orbit = isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT;
-  const target = isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET;
-  const fov = isMobile ? MOBILE_FOV : DESKTOP_FOV;
+          const mobile =
+            typeof window !== "undefined" && window.innerWidth < 768;
 
-  viewer.cameraOrbit = orbit;
-  viewer.cameraTarget = target;
-  viewer.fieldOfView = fov;
+          const orbit = mobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT;
+          const target = mobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET;
+          const fov = mobile ? MOBILE_FOV : DESKTOP_FOV;
 
-  setInitialCamera({
-    orbit,
-    target,
-    fov,
-  });
-}}
+          viewer.cameraOrbit = orbit;
+          viewer.cameraTarget = target;
+          viewer.fieldOfView = fov;
+
+          setInitialCamera({
+            orbit,
+            target,
+            fov,
+          });
+        }}
+        className="absolute z-10 pointer-events-auto"
+        style={{
+          display: "block",
+          background: "transparent",
+          overflow: "visible",
+          left: "50%",
+          top: isMobile ? "55%" : "50%",
+          width: isMobile ? "420px" : "1080px",
+          height: isMobile ? "700px" : "1920px",
+          transform: "translate(-50%, -50%)",
+          marginTop: "0",
+        }}
       />
 
       <div
