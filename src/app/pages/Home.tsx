@@ -112,8 +112,8 @@ export default function Home() {
               overflow: "visible",
               left: "50%",
               top: "50%",
-              width: "540px",
-              height: "420px",
+              width: "1080px",
+              height: "1920px",
               transform: "translate(-50%, -50%)",
             }}
           />
