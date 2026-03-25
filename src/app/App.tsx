@@ -17,7 +17,7 @@ function App() {
     return (
       <div className="min-h-screen w-full bg-background flex items-center justify-center overflow-hidden">
         <video
-          src="/public/projects/splash.MOV
+          src="/public/projects/splash.MOV"
           autoPlay
           muted
           playsInline
