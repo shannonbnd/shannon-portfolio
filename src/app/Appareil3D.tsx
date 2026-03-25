@@ -43,9 +43,6 @@ export default function Appareil3D({
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  console.log("Appareil3D currentTicket:", currentTicket);
-  console.log("Appareil3D showTicket:", showTicket);
-
   return (
     <>
       <model-viewer
@@ -70,7 +67,7 @@ export default function Appareil3D({
             fov: viewer.fieldOfView,
           });
         }}
-        className="absolute z-[999] pointer-events-auto"
+        className="absolute z-10 pointer-events-auto"
         style={{
           display: "block",
           background: "transparent",
@@ -85,52 +82,38 @@ export default function Appareil3D({
       />
 
       <div
+        className="absolute z-50 pointer-events-none overflow-visible"
         style={{
-          position: "fixed",
-          top: "120px",
-          left: "120px",
-          width: "220px",
-          minHeight: "280px",
-          background: "yellow",
-          border: "6px solid red",
-          zIndex: 999999,
-          pointerEvents: "auto",
-          color: "black",
-          fontSize: "18px",
-          padding: "12px",
+          left: "50%",
+          top: isMobile ? "46%" : "61%",
+          width: isMobile ? "120px" : "160px",
+          height: isMobile ? "170px" : "230px",
+          transform: "translate(-50%, -50%)",
+          marginTop: "0",
         }}
       >
-        <div style={{ fontWeight: 700, marginBottom: "8px" }}>TEST TICKET</div>
-        <div style={{ marginBottom: "8px" }}>
-          {currentTicket ? currentTicket.title : "AUCUN TICKET"}
-        </div>
-        <div style={{ marginBottom: "12px" }}>
-          showTicket: {showTicket ? "true" : "false"}
-        </div>
-
         {currentTicket && (
           <button
             onClick={onTicketClick}
             type="button"
+            aria-label={`Ouvrir le projet ${currentTicket.title}`}
+            className="absolute overflow-hidden border border-black/10 bg-white shadow-xl pointer-events-auto transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
-              width: "100%",
-              height: "220px",
-              display: "block",
-              background: "white",
-              border: "4px solid blue",
-              padding: 0,
-              cursor: "pointer",
+              position: "absolute",
+              zIndex: 60,
+              top: isMobile ? -12 : -12,
+              left: 0,
+              width: isMobile ? "120px" : "160px",
+              height: isMobile ? "150px" : "200px",
+              transform: showTicket ? "translateY(8px)" : "translateY(-60px)",
+              opacity: showTicket ? 1 : 0,
+              borderRadius: "0px",
             }}
           >
             <img
               src={currentTicket.image}
               alt={currentTicket.title}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
+              className="block h-full w-full object-cover"
               draggable={false}
             />
           </button>
