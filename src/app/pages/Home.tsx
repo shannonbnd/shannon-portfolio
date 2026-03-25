@@ -1,3 +1,10 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 import { useRef, useState, type MouseEvent } from "react";
 import { useNavigate } from "react-router";
 import "@google/model-viewer/dist/model-viewer";
