@@ -9,7 +9,7 @@ import { HOME_LAYOUT } from "../homeLayout";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const BASE_CAMERA_ORBIT = "-5deg 82deg 50%";
+const BASE_CAMERA_ORBIT = "-5deg 82deg -4,1m";
 const BASE_CAMERA_TARGET = "-0.4m 0m 0m";
 const BASE_FOV = "28deg";
 
