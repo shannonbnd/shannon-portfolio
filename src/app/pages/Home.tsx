@@ -10,7 +10,7 @@ import Appareil3D from "../Appareil3D";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const BASE_CAMERA_ORBIT = "-5deg 82deg -20m";
+const BASE_CAMERA_ORBIT = "-5deg 82deg -7m";
 const MOBILE_CAMERA_ORBIT = "-5deg 82deg -5m";
 const DESKTOP_CAMERA_TARGET = "-0.4m 3m 0m";
 const MOBILE_CAMERA_TARGET = "-0.4m 0m 0m";
