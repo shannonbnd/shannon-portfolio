@@ -58,28 +58,13 @@ export default function Home() {
     restoreInitialCamera();
   };
 
-  const handleTakePhoto = () => {
-    if (isPrinting || showTicket) return;
-
-    const viewer = viewerRef.current;
-    if (!viewer) return;
-
-    restoreInitialCamera();
-
-    setIsPrinting(true);
-    setIsLocked(true);
-
-    const randomTicket = PROJECTS[Math.floor(Math.random() * PROJECTS.length)];
-    setCurrentTicket(randomTicket);
-
-    setTimeout(() => {
-      setShowTicket(true);
-    }, 180);
-
-    setTimeout(() => {
-      setIsPrinting(false);
-    }, 1500);
-  };
+ const handleTakePhoto = () => {
+  const randomTicket = PROJECTS[0];
+  console.log("FORCE ticket", randomTicket);
+  setCurrentTicket(randomTicket);
+  setShowTicket(true);
+  setIsLocked(true);
+};
 
   const handleTicketClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
