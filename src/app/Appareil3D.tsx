@@ -7,7 +7,7 @@ const DESKTOP_CAMERA_ORBIT = "-5deg 82deg 18m";
 const MOBILE_CAMERA_ORBIT = "-5deg 82deg -6m";
 const DESKTOP_CAMERA_TARGET = "-0.4m 3m 0m";
 const MOBILE_CAMERA_TARGET = "-0.4m 0m 0m";
-const BASE_FOV = "40deg";
+const DESKTOP_FOV = "40deg";
 const MOBILE_FOV = "40deg";
 
 type Appareil3DProps = {
