@@ -1,4 +1,4 @@
-import SbImport from "../../imports/SB";
+import SbImport from "../../imports/Sb";
 import ProjectDetailPage from "../components/ProjectDetailPage";
 import { useLocation, useNavigate } from "react-router";
 
