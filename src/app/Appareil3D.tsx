@@ -58,27 +58,23 @@ export default function Appareil3D({
         reveal="auto"
         poster="/poster-appareil.png"
         onLoad={() => {
-          const viewer = viewerRef.current;
-          if (!viewer) return;
+  const viewer = viewerRef.current;
+  if (!viewer) return;
 
-          setInitialCamera({
-            orbit: viewer.cameraOrbit,
-            target: viewer.cameraTarget,
-            fov: viewer.fieldOfView,
-          });
-        }}
-        className="absolute z-10 pointer-events-auto"
-        style={{
-          display: "block",
-          background: "transparent",
-          overflow: "visible",
-          left: "50%",
-          top: isMobile ? "55%" : "50%",
-          width: isMobile ? "420px" : "1080px",
-          height: isMobile ? "700px" : "1920px",
-          transform: "translate(-50%, -50%)",
-          marginTop: "0",
-        }}
+  const orbit = isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT;
+  const target = isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET;
+  const fov = BASE_FOV;
+
+  viewer.cameraOrbit = orbit;
+  viewer.cameraTarget = target;
+  viewer.fieldOfView = fov;
+
+  setInitialCamera({
+    orbit,
+    target,
+    fov,
+  });
+}}
       />
 
       <div
