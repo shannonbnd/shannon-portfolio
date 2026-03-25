@@ -3,10 +3,10 @@ import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const DESKTOP_CAMERA_ORBIT = "-5deg 82deg -5.2m";
-const MOBILE_CAMERA_ORBIT = "-5deg 82deg -5.8m";
+const DESKTOP_CAMERA_ORBIT = "-5deg 82deg 5.4m";
+const MOBILE_CAMERA_ORBIT = "-5deg 82deg 6.1m";
 const BASE_CAMERA_TARGET = "-0.4m 0m 0m";
-const BASE_FOV = "28deg";
+const BASE_FOV = "32deg";
 
 type Appareil3DProps = {
   viewerRef: RefObject<any>;
