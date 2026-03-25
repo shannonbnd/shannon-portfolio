@@ -72,9 +72,9 @@ export default function Appareil3D({
           background: "transparent",
           overflow: "visible",
           left: "50%",
-          top: isMobile ? "42%" : "50%",
-          width: isMobile ? "420px" : "760px",
-          height: isMobile ? "700px" : "1200px",
+          top: isMobile ? "55%" : "50%",
+          width: isMobile ? "420px" : "1080px",
+          height: isMobile ? "700px" : "1920px",
           transform: "translate(-50%, -50%)",
           marginTop: "0",
         }}
