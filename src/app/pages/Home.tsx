@@ -29,25 +29,16 @@ export default function Home() {
   const [showTicket, setShowTicket] = useState(false);
   const [currentTicket, setCurrentTicket] = useState<ProjectTicket | null>(null);
 
-  const restoreInitialCamera = () => {
-    const viewer = viewerRef.current;
-    const initialCamera = initialCameraRef.current;
+const restoreInitialCamera = () => {
+  const viewer = viewerRef.current;
+  const initialCamera = initialCameraRef.current;
 
-    if (!viewer) return;
+  if (!viewer || !initialCamera) return;
 
-    if (initialCamera) {
-      viewer.cameraOrbit = initialCamera.orbit;
-      viewer.cameraTarget = initialCamera.target;
-      viewer.fieldOfView = initialCamera.fov;
-      return;
-    }
-
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
-    viewer.cameraOrbit = isMobile ? MOBILE_CAMERA_ORBIT : BASE_CAMERA_ORBIT;
-    viewer.cameraTarget = BASE_CAMERA_TARGET;
-    viewer.fieldOfView = BASE_FOV;
-  };
+  viewer.cameraOrbit = initialCamera.orbit;
+  viewer.cameraTarget = initialCamera.target;
+  viewer.fieldOfView = initialCamera.fov;
+};
 
   const resetHomeState = () => {
     setIsPrinting(false);
