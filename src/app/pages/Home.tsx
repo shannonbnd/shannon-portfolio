@@ -10,11 +10,10 @@ import Appareil3D from "../Appareil3D";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const BASE_CAMERA_ORBIT = "-5deg 82deg -7m";
+const BASE_CAMERA_ORBIT = "-5deg 82deg -4.1m";
 const MOBILE_CAMERA_ORBIT = "-5deg 82deg -5m";
-const DESKTOP_CAMERA_TARGET = "-0.4m 3m 0m";
-const MOBILE_CAMERA_TARGET = "-0.4m 0m 0m";
-const BASE_FOV = "40deg";
+const BASE_CAMERA_TARGET = "-0.4m 0m 0m";
+const BASE_FOV = "28deg";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -58,13 +57,26 @@ export default function Home() {
     restoreInitialCamera();
   };
 
- const handleTakePhoto = () => {
-  const randomTicket = PROJECTS[0];
-  console.log("FORCE ticket", randomTicket);
-  setCurrentTicket(randomTicket);
-  setShowTicket(true);
-  setIsLocked(true);
-};
+  const handleTakePhoto = () => {
+    if (isPrinting) return;
+
+    restoreInitialCamera();
+
+    setIsPrinting(true);
+    setIsLocked(true);
+    setShowTicket(false);
+
+    const randomTicket = PROJECTS[Math.floor(Math.random() * PROJECTS.length)];
+    setCurrentTicket(randomTicket);
+
+    setTimeout(() => {
+      setShowTicket(true);
+    }, 180);
+
+    setTimeout(() => {
+      setIsPrinting(false);
+    }, 1500);
+  };
 
   const handleTicketClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
