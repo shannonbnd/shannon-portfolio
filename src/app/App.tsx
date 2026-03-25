@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplash(false);
-    }, 2000); // 2 secondes
+    }, 5000); // 5 secondes
 
     return () => clearTimeout(timer);
   }, []);
@@ -21,8 +21,7 @@ function App() {
           autoPlay
           muted
           playsInline
-          onEnded={() => setShowSplash(false)}
-          className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] h-auto object-contain"
+          className="w-[320px] sm:w-[380px] md:w-[440px] h-auto object-contain"
         />
       </div>
     );
