@@ -10,11 +10,6 @@ import Appareil3D from "../Appareil3D";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const BASE_CAMERA_ORBIT = "-5deg 82deg -2.5m";
-const MOBILE_CAMERA_ORBIT = "-5deg 82deg -6m";
-const BASE_CAMERA_TARGET = "-0.4m 0m 0m";
-const BASE_FOV = "95deg";
-
 export default function Home() {
   const navigate = useNavigate();
   const viewerRef = useRef<any>(null);
