@@ -43,6 +43,9 @@ export default function Appareil3D({
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
+  console.log("Appareil3D currentTicket:", currentTicket);
+  console.log("Appareil3D showTicket:", showTicket);
+
   return (
     <>
       <model-viewer
@@ -81,29 +84,42 @@ export default function Appareil3D({
         }}
       />
 
-      {currentTicket && (
-        <div
-          style={{
-            position: "fixed",
-            top: "120px",
-            left: "120px",
-            width: "220px",
-            height: "280px",
-            background: "yellow",
-            border: "6px solid red",
-            zIndex: 999999,
-            pointerEvents: "auto",
-          }}
-        >
+      <div
+        style={{
+          position: "fixed",
+          top: "120px",
+          left: "120px",
+          width: "220px",
+          minHeight: "280px",
+          background: "yellow",
+          border: "6px solid red",
+          zIndex: 999999,
+          pointerEvents: "auto",
+          color: "black",
+          fontSize: "18px",
+          padding: "12px",
+        }}
+      >
+        <div style={{ fontWeight: 700, marginBottom: "8px" }}>TEST TICKET</div>
+        <div style={{ marginBottom: "8px" }}>
+          {currentTicket ? currentTicket.title : "AUCUN TICKET"}
+        </div>
+        <div style={{ marginBottom: "12px" }}>
+          showTicket: {showTicket ? "true" : "false"}
+        </div>
+
+        {currentTicket && (
           <button
             onClick={onTicketClick}
             type="button"
             style={{
               width: "100%",
-              height: "100%",
+              height: "220px",
               display: "block",
               background: "white",
               border: "4px solid blue",
+              padding: 0,
+              cursor: "pointer",
             }}
           >
             <img
@@ -118,8 +134,8 @@ export default function Appareil3D({
               draggable={false}
             />
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }
