@@ -3,16 +3,22 @@ import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
+const DESKTOP_CAMERA_ORBIT = "-5deg 82deg -4.1m";
+const MOBILE_CAMERA_ORBIT = "-5deg 82deg -5m";
+const BASE_CAMERA_TARGET = "-0.4m 0m 0m";
+const BASE_FOV = "40deg";
+
 type Appareil3DProps = {
   viewerRef: RefObject<any>;
   isLocked: boolean;
   currentTicket: ProjectTicket | null;
   showTicket: boolean;
   onTicketClick: (e: MouseEvent<HTMLButtonElement>) => void;
-  desktopCameraOrbit: string;
-  mobileCameraOrbit: string;
-  cameraTarget: string;
-  fieldOfView: string;
+  setInitialCamera: (camera: {
+    orbit: string;
+    target: string;
+    fov: string;
+  }) => void;
 };
 
 export default function Appareil3D({
@@ -21,10 +27,7 @@ export default function Appareil3D({
   currentTicket,
   showTicket,
   onTicketClick,
-  desktopCameraOrbit,
-  mobileCameraOrbit,
-  cameraTarget,
-  fieldOfView,
+  setInitialCamera,
 }: Appareil3DProps) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -45,24 +48,34 @@ export default function Appareil3D({
         ref={viewerRef}
         src="/appareil.glb"
         alt="Modèle 3D"
-        camera-orbit={isMobile ? mobileCameraOrbit : desktopCameraOrbit}
-        field-of-view={fieldOfView}
-        camera-target={cameraTarget}
+        camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
+        field-of-view={BASE_FOV}
+        camera-target={BASE_CAMERA_TARGET}
         camera-controls={!isLocked}
         interaction-prompt="none"
         disable-zoom={isLocked}
         reveal="auto"
         poster="/poster-appareil.png"
+        onLoad={() => {
+          const viewer = viewerRef.current;
+          if (!viewer) return;
+
+          setInitialCamera({
+            orbit: viewer.cameraOrbit,
+            target: viewer.cameraTarget,
+            fov: viewer.fieldOfView,
+          });
+        }}
         className="absolute z-[999] pointer-events-auto"
         style={{
           display: "block",
           background: "transparent",
           overflow: "visible",
           left: "50%",
-          top: isMobile ? "5%" : "30%",
-          width: isMobile ? "420px" : "1080px",
-          height: isMobile ? "700px" : "1920px",
-          transform: isMobile ? "translateX(-50%)" : "translate(-50%, -50%)",
+          top: isMobile ? "42%" : "50%",
+          width: isMobile ? "420px" : "760px",
+          height: isMobile ? "700px" : "1200px",
+          transform: "translate(-50%, -50%)",
           marginTop: "0",
         }}
       />
@@ -71,7 +84,7 @@ export default function Appareil3D({
         className="absolute z-[1001] pointer-events-none overflow-visible"
         style={{
           left: "50%",
-          top: isMobile ? "50%" : "61%",
+          top: isMobile ? "46%" : "61%",
           width: isMobile ? "120px" : "160px",
           height: isMobile ? "170px" : "230px",
           transform: "translate(-50%, -50%)",
