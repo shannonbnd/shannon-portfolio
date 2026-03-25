@@ -5,7 +5,8 @@ type ProjectTicket = (typeof PROJECTS)[number];
 
 const DESKTOP_CAMERA_ORBIT = "-5deg 82deg -7m";
 const MOBILE_CAMERA_ORBIT = "-5deg 82deg -5m";
-const BASE_CAMERA_TARGET = "-0.4m 0m 0m";
+const DESKTOP_CAMERA_TARGET = "-0.4m 0.5m 0m";
+const MOBILE_CAMERA_TARGET = "-0.4m 0m 0m";
 const BASE_FOV = "40deg";
 
 type Appareil3DProps = {
@@ -50,7 +51,7 @@ export default function Appareil3D({
         alt="Modèle 3D"
         camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
         field-of-view={BASE_FOV}
-        camera-target={BASE_CAMERA_TARGET}
+        camera-target={isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET}
         camera-controls={!isLocked}
         interaction-prompt="none"
         disable-zoom={isLocked}
