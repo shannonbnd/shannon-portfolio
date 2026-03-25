@@ -1,4 +1,4 @@
-import LoasisImport from "../../imports/LOASIS";
+import LoasisImport from "../../imports/Loasis";
 import ProjectDetailPage from "../components/ProjectDetailPage";
 import { useLocation, useNavigate } from "react-router";
 
