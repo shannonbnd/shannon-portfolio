@@ -22,7 +22,7 @@ function App() {
           muted
           playsInline
           onEnded={() => setShowSplash(false)}
-          className="w-full h-full object-cover"
+          className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] h-auto object-contain"
         />
       </div>
     );
