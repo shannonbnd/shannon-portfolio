@@ -99,7 +99,7 @@ export default function Appareil3D({
             aria-label={`Ouvrir le projet ${currentTicket.title}`}
             className="absolute overflow-hidden border border-black/10 bg-white shadow-xl pointer-events-auto transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
-              top: isMobile ? -12 : -28,
+              top: isMobile ? -4 : -10,
               left: 0,
               width: isMobile ? "120px" : "160px",
               height: isMobile ? "150px" : "200px",
