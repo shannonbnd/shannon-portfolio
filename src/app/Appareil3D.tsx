@@ -8,6 +8,7 @@ const MOBILE_CAMERA_ORBIT = "-5deg 82deg -6m";
 const DESKTOP_CAMERA_TARGET = "-0.4m 3m 0m";
 const MOBILE_CAMERA_TARGET = "-0.4m 0m 0m";
 const BASE_FOV = "40deg";
+const MOBILE_FOV = "40deg";
 
 type Appareil3DProps = {
   viewerRef: RefObject<any>;
@@ -49,9 +50,9 @@ export default function Appareil3D({
         ref={viewerRef}
         src="/appareil.glb"
         alt="Modèle 3D"
-        camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
-        field-of-view={BASE_FOV}
-        camera-target={isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET}
+       camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
+       field-of-view={isMobile ? MOBILE_FOV : DESKTOP_FOV}
+       camera-target={isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET}
         camera-controls={!isLocked}
         interaction-prompt="none"
         disable-zoom={isLocked}
@@ -60,10 +61,11 @@ export default function Appareil3D({
         onLoad={() => {
   const viewer = viewerRef.current;
   if (!viewer) return;
+  const mobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   const orbit = isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT;
   const target = isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET;
-  const fov = BASE_FOV;
+  const fov = isMobile ? MOBILE_FOV : DESKTOP_FOV;
 
   viewer.cameraOrbit = orbit;
   viewer.cameraTarget = target;
