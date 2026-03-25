@@ -1,11 +1,11 @@
 import { useEffect, useState, type MouseEvent, type RefObject } from "react";
-import { PROJECTS } from "../../data/projects";
+import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const DESKTOP_CAMERA_ORBIT = "-5deg 82deg -20m";
-const MOBILE_CAMERA_ORBIT = "-5deg 82deg -4.8m";
-const BASE_CAMERA_TARGET = "-0.2m 0m 0m";
+const DESKTOP_CAMERA_ORBIT = "-5deg 82deg -4.1m";
+const MOBILE_CAMERA_ORBIT = "-5deg 82deg -4.6m";
+const BASE_CAMERA_TARGET = "-0.4m 0m 0m";
 const BASE_FOV = "28deg";
 
 type Appareil3DProps = {
@@ -57,8 +57,8 @@ export default function Appareil3D({
           overflow: "visible",
           left: "50%",
           top: isMobile ? "0" : "50%",
-          width: isMobile ? "840px" : "1080px",
-          height: isMobile ? "1400px" : "1920px",
+          width: isMobile ? "540px" : "1080px",
+          height: isMobile ? "860px" : "1920px",
           transform: isMobile ? "translateX(-50%)" : "translate(-50%, -50%)",
           marginTop: "0",
         }}
@@ -68,9 +68,9 @@ export default function Appareil3D({
         className="absolute z-[1001] pointer-events-none overflow-visible"
         style={{
           left: "50%",
-          top: isMobile ? "54%" : "63%",
-          width: isMobile ? "140px" : "180px",
-          height: isMobile ? "210px" : "260px",
+          top: isMobile ? "52%" : "63%",
+          width: isMobile ? "135px" : "180px",
+          height: isMobile ? "195px" : "260px",
           transform: "translate(-50%, -50%)",
           marginTop: "0",
         }}
@@ -82,10 +82,10 @@ export default function Appareil3D({
             aria-label={`Ouvrir le projet ${currentTicket.title}`}
             className="absolute overflow-hidden border border-black/10 bg-white shadow-xl pointer-events-auto transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
-              top: isMobile ? -18 : -37,
+              top: isMobile ? -16 : -37,
               left: 0,
-              width: isMobile ? "140px" : "180px",
-              height: isMobile ? "175px" : "225px",
+              width: isMobile ? "135px" : "180px",
+              height: isMobile ? "170px" : "225px",
               transform: showTicket ? "translateY(8px)" : "translateY(-120px)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
