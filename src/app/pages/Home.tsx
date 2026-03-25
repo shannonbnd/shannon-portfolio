@@ -111,7 +111,7 @@ export default function Home() {
               background: "transparent",
               overflow: "visible",
               left: "50%",
-              top: "50%",
+              top: "70%",
               width: "1080px",
               height: "1920px",
               transform: "translate(-50%, -50%)",
