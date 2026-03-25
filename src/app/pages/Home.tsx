@@ -6,7 +6,7 @@ import ThemeToggle from "../components/ThemeToggle";
 import { PROJECTS } from "../../data/projects";
 import ResponsiveArtboard from "../components/ResponsiveArtboard";
 import { HOME_LAYOUT } from "../homeLayout";
-import Appareil3D from "../components/Appareil3D";
+import Appareil3D from "../app/Appareil3D";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
