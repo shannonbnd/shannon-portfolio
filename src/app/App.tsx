@@ -13,17 +13,21 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-     if (showSplash) {
+       if (showSplash) {
     return (
       <div className="min-h-screen w-full bg-background flex items-center justify-center overflow-hidden">
-        <img
-          src="/splash_screen.png"
-          alt="Splash screen"
-          className="max-w-full max-h-full object-contain"
+        <video
+          src="/public/projects/splash.MOV
+          autoPlay
+          muted
+          playsInline
+          onEnded={() => setShowSplash(false)}
+          className="w-full h-full object-cover"
         />
       </div>
     );
   }
+
 
   return <RouterProvider router={router} />;
 }
