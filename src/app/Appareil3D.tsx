@@ -113,7 +113,7 @@ export default function Appareil3D({
             style={{
               position: "absolute",
               zIndex: 60,
-              top: isMobile ? -15 : -20,
+              top: isMobile ? -20 : -35,
               left: 0,
               width: isMobile ? "145px" : "220px",
               height: isMobile ? "185px" : "275px",
