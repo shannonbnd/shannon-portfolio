@@ -5,8 +5,8 @@ type ProjectTicket = (typeof PROJECTS)[number];
 
 const DESKTOP_CAMERA_ORBIT = "-5deg 84deg 12m";
 const MOBILE_CAMERA_ORBIT = "-5deg 84deg 6m";
-const DESKTOP_CAMERA_TARGET = "-3m 0.7m 0m";
-const MOBILE_CAMERA_TARGET = "-3m 1.8m 0m";
+const DESKTOP_CAMERA_TARGET = "-3m 1.7m 0m";
+const MOBILE_CAMERA_TARGET = "-3m 2m 0m";
 const DESKTOP_FOV = "15deg";
 const MOBILE_FOV = "15deg";
 
