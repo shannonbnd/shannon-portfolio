@@ -99,7 +99,7 @@ export default function Appareil3D({
           left: "50%",
           top: isMobile ? "64%" : "57%",
           width: isMobile ? "145px" : "220px",
-          height: isMobile ? "205px" : "300px",
+          height: isMobile ? "200px" : "330px",
           transform: "translate(-50%, -50%)",
           marginTop: "0",
         }}
