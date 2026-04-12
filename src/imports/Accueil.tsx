@@ -1,6 +1,5 @@
-  import svgPaths from "./svg-fqlwtc3i54";
+› import svgPaths from "./svg-fqlwtc3i54";
   import { HOME_LAYOUT } from "../app/homeLayout";
-  import "@google/model-viewer";
 
   export default function Accueil() {
     return (
@@ -26,7 +25,7 @@
               ></model-viewer>
             </div>
           </div>
-
+          
           <div className={`absolute ${HOME_LAYOUT.email}`} data-name="BOUTON EMAIL">
             <svg
               className="absolute block size-full"
