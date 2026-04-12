@@ -18,7 +18,7 @@
                 src="/appareil.glb"
                 camera-controls
                 auto-rotate
-                camera-target="auto auto auto"
+                camera-target="center center center"
                 camera-orbit="0deg 75deg auto"
                 disable-pan
                 shadow-intensity="1"
