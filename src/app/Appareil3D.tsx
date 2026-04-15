@@ -148,6 +148,7 @@ export default function Appareil3D({
             ref={ticketViewerRef}
             src="/ticket-print.glb"
             alt={`Ticket du projet ${currentTicket.title}`}
+            orientation="0deg 90deg 0deg"
             autoplay
             animation-crossfade-duration="0"
             interaction-prompt="none"
