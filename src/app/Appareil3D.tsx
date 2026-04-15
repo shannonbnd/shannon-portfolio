@@ -137,9 +137,9 @@ export default function Appareil3D({
           className="absolute z-[120] overflow-visible pointer-events-none"
           style={{
             left: "50%",
-            top: isMobile ? "66%" : "64%",
-            width: isMobile ? "2200px" : "3200px",
-            height: isMobile ? "3000px" : "4200px",
+            top: isMobile ? "56%" : "54%",
+            width: isMobile ? "1800px" : "2600px",
+            height: isMobile ? "2500px" : "3400px",
             transform: "translate(-50%, -50%)",
           }}
         >
@@ -155,9 +155,9 @@ export default function Appareil3D({
             camera-controls={false}
             shadow-intensity="1"
             exposure="1.1"
-            camera-orbit={isMobile ? "56deg 86deg 0.14m" : "56deg 86deg 0.18m"}
-            camera-target="0m -0.46m -2.18m"
-            field-of-view="20deg"
+            camera-orbit={isMobile ? "56deg 86deg 0.38m" : "56deg 86deg 0.46m"}
+            camera-target="0m -0.28m -2.18m"
+            field-of-view="26deg"
             className="absolute inset-0 pointer-events-none"
             style={{
               display: "block",
@@ -173,9 +173,9 @@ export default function Appareil3D({
             className="absolute pointer-events-auto cursor-pointer"
             style={{
               left: "50%",
-              top: isMobile ? "20%" : "18%",
-              width: isMobile ? "760px" : "1020px",
-              height: isMobile ? "1080px" : "1440px",
+              top: isMobile ? "16%" : "14%",
+              width: isMobile ? "620px" : "860px",
+              height: isMobile ? "900px" : "1220px",
               transform: "translateX(-50%)",
               background: "transparent",
             }}
