@@ -3,8 +3,8 @@ import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const DESKTOP_CAMERA_ORBIT = "-5deg 84deg 16m";
-const MOBILE_CAMERA_ORBIT = "-5deg 84deg 8m";
+const DESKTOP_CAMERA_ORBIT = "-5deg 84deg 22m";
+const MOBILE_CAMERA_ORBIT = "-5deg 84deg 12m";
 const DESKTOP_CAMERA_TARGET = "auto auto auto";
 const MOBILE_CAMERA_TARGET = "auto auto auto";
 const DESKTOP_FOV = "15deg";
@@ -85,9 +85,9 @@ export default function Appareil3D({
           background: "transparent",
           overflow: "visible",
           left: "50%",
-          top: isMobile ? "55%" : "50%",
-          width: isMobile ? "600px" : "1080px",
-          height: isMobile ? "1000px" : "1920px",
+          top: isMobile ? "49%" : "47%",
+          width: isMobile ? "430px" : "760px",
+          height: isMobile ? "720px" : "1320px",
           transform: "translate(-50%, -50%)",
           marginTop: "0",
         }}
