@@ -3,12 +3,12 @@ import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const DESKTOP_CAMERA_ORBIT = "0deg 90deg 36m";
-const MOBILE_CAMERA_ORBIT = "0deg 90deg 22m";
+const DESKTOP_CAMERA_ORBIT = "0deg 90deg auto";
+const MOBILE_CAMERA_ORBIT = "0deg 90deg auto";
 const DESKTOP_CAMERA_TARGET = "auto auto auto";
 const MOBILE_CAMERA_TARGET = "auto auto auto";
-const DESKTOP_FOV = "18deg";
-const MOBILE_FOV = "18deg";
+const DESKTOP_FOV = "16deg";
+const MOBILE_FOV = "16deg";
 
 type Appareil3DProps = {
   viewerRef: RefObject<any>;
@@ -50,6 +50,7 @@ export default function Appareil3D({
         ref={viewerRef}
         src="/appareil.glb"
         alt="Modèle 3D"
+        scale={isMobile ? "0.48 0.48 0.48" : "0.42 0.42 0.42"}
         camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
         field-of-view={isMobile ? MOBILE_FOV : DESKTOP_FOV}
         camera-target={isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET}
@@ -85,9 +86,9 @@ export default function Appareil3D({
           background: "transparent",
           overflow: "visible",
           left: "50%",
-          top: isMobile ? "41%" : "39%",
-          width: isMobile ? "360px" : "520px",
-          height: isMobile ? "620px" : "900px",
+          top: isMobile ? "39%" : "37%",
+          width: isMobile ? "340px" : "500px",
+          height: isMobile ? "560px" : "780px",
           transform: "translate(-50%, -50%)",
           marginTop: "0",
         }}
