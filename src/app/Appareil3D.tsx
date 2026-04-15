@@ -3,12 +3,12 @@ import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const DESKTOP_CAMERA_ORBIT = "-5deg 84deg 28m";
-const MOBILE_CAMERA_ORBIT = "-5deg 84deg 16m";
+const DESKTOP_CAMERA_ORBIT = "0deg 90deg 36m";
+const MOBILE_CAMERA_ORBIT = "0deg 90deg 22m";
 const DESKTOP_CAMERA_TARGET = "auto auto auto";
 const MOBILE_CAMERA_TARGET = "auto auto auto";
-const DESKTOP_FOV = "20deg";
-const MOBILE_FOV = "20deg";
+const DESKTOP_FOV = "18deg";
+const MOBILE_FOV = "18deg";
 
 type Appareil3DProps = {
   viewerRef: RefObject<any>;
@@ -85,9 +85,9 @@ export default function Appareil3D({
           background: "transparent",
           overflow: "visible",
           left: "50%",
-          top: isMobile ? "55%" : "50%",
-          width: isMobile ? "600px" : "1080px",
-          height: isMobile ? "1000px" : "1920px",
+          top: isMobile ? "41%" : "39%",
+          width: isMobile ? "360px" : "520px",
+          height: isMobile ? "620px" : "900px",
           transform: "translate(-50%, -50%)",
           marginTop: "0",
         }}
