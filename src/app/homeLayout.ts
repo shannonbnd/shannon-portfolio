@@ -1,5 +1,5 @@
 export const HOME_LAYOUT = {
-  toggle: "left-[29px] top-[20px] lg:left-[-500px] lg:top-[34px]",
+  toggle: "left-[29px] top-[40px] lg:left-[-500px] lg:top-[34px]",
   share: "left-[261px] top-[-18px] h-[43px] w-[43px] lg:left-auto lg:right-[-384px] lg:top-[30px]",
   cv: "left-[315px] top-[-18px] h-[39px] w-[42px] lg:left-auto lg:right-[-442px] lg:top-[30px]",
   gallery: "left-[369px] top-[-18px] h-[40px] w-[42px] lg:left-auto lg:right-[-500px] lg:top-[30px]",
