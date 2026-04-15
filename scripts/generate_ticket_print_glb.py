@@ -93,12 +93,12 @@ def main():
     root = create_empty("TicketRoot", location=(0.0, 0.0, 0.0))
     root.rotation_euler = (math.radians(-6.0), 0.0, 0.0)
 
-    main_height = 1.75
-    straight_height = 0.72
-    wave_segments = [0.26, 0.26, 0.22]
+    main_height = 1.58
+    straight_height = 1.02
+    wave_segments = [0.18, 0.18, 0.18, 0.18, 0.16, 0.14]
     thickness = 0.008
-    width_main = 0.92
-    width_tail = 0.76
+    width_main = 0.94
+    width_tail = 0.82
 
     main_panel = create_strip("MainPanel", width_main, main_height, thickness, root, material)
     straight_pivot = create_empty("StraightPivot", parent=root, location=(0.0, 0.0, -main_height))
@@ -141,9 +141,9 @@ def main():
     straight.scale = (1.0, 1.0, 1.0)
     straight.keyframe_insert(data_path="scale", frame=78)
 
-    wave_angles = [-14.0, -34.0, -56.0]
-    wave_starts = [72, 78, 84]
-    wave_ends = [86, 90, 94]
+    wave_angles = [-6.0, -12.0, -20.0, -32.0, -48.0, -66.0]
+    wave_starts = [78, 80, 82, 84, 87, 90]
+    wave_ends = [84, 86, 88, 91, 94, 96]
     for (pivot, segment, _), angle, start, end in zip(pivots, wave_angles, wave_starts, wave_ends):
         pivot.rotation_euler = (0.0, 0.0, 0.0)
         pivot.keyframe_insert(data_path="rotation_euler", frame=1)
@@ -157,9 +157,9 @@ def main():
         segment.scale = (1.0, 1.0, 1.0)
         segment.keyframe_insert(data_path="scale", frame=end)
 
-    roll.scale = (0.4, 0.4, 0.4)
+    roll.scale = (0.42, 0.42, 0.42)
     roll.keyframe_insert(data_path="scale", frame=1)
-    roll.keyframe_insert(data_path="scale", frame=86)
+    roll.keyframe_insert(data_path="scale", frame=90)
     roll.scale = (1.0, 1.0, 1.0)
     roll.keyframe_insert(data_path="scale", frame=96)
 
