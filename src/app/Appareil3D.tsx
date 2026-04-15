@@ -121,44 +121,16 @@ export default function Appareil3D({
               transform: showTicket ? "translateY(8px)" : "translateY(-90px)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "2px",
-              padding: isMobile ? "10px 10px 32px" : "14px 14px 46px",
+              padding: isMobile ? "10px 10px 52px" : "14px 14px 82px",
             }}
           >
-            <div className="flex h-full w-full flex-col">
+            <div className="h-full w-full">
               <img
                 src={currentTicket.image}
                 alt={currentTicket.title}
-                className="block w-full flex-1 object-cover"
+                className="block h-full w-full object-cover"
                 draggable={false}
               />
-              <div
-                className="flex items-end justify-between text-black"
-                style={{
-                  minHeight: isMobile ? "22px" : "30px",
-                  paddingTop: isMobile ? "8px" : "12px",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "9px" : "12px",
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
-                  }}
-                >
-                  {currentTicket.title}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "8px" : "10px",
-                    fontWeight: 500,
-                    opacity: 0.75,
-                  }}
-                >
-                  2026
-                </span>
-              </div>
             </div>
           </button>
         )}
