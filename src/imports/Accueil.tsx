@@ -11,20 +11,7 @@ import svgPaths from "./svg-fqlwtc3i54";
           className="absolute left-0 top-0 h-[956px] w-[440px] overflow-visible"
           data-name="Accueil"
         >
-          <div className="absolute left-[40px] top-[144px] h-[540px] w-[356px] overflow-clip bg-[#b3b3b3]">
-            <div className="absolute left-[-98px] top-0 h-[589px] w-[541px]">
-              <model-viewer
-                src="/appareil.glb"
-                camera-controls
-                auto-rotate
-                camera-target="center center center"
-                camera-orbit="0deg 75deg auto"
-                disable-pan
-                shadow-intensity="1"
-                style={{ width: "100%", height: "100%", backgroundColor: "transparent" }}
-              ></model-viewer>
-            </div>
-          </div>
+          <div className="absolute left-[40px] top-[144px] h-[540px] w-[356px] overflow-clip bg-[#b3b3b3]" />
           
           <div className={`absolute ${HOME_LAYOUT.email}`} data-name="BOUTON EMAIL">
             <svg
