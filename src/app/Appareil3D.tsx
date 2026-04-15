@@ -50,7 +50,7 @@ export default function Appareil3D({
         ref={viewerRef}
         src="/appareil.glb"
         alt="Modèle 3D"
-        scale={isMobile ? "0.8 0.8 0.8" : "0.63 0.63 0.63"}
+        scale={isMobile ? "1.2 1.2 1.2" : "0.95 0.95 0.95"}
         camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
         field-of-view={isMobile ? MOBILE_FOV : DESKTOP_FOV}
         camera-target={isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET}
@@ -86,9 +86,9 @@ export default function Appareil3D({
           background: "transparent",
           overflow: "visible",
           left: isMobile ? "54%" : "52%",
-          top: isMobile ? "31%" : "36%",
-          width: isMobile ? "430px" : "585px",
-          height: isMobile ? "700px" : "915px",
+          top: isMobile ? "24%" : "34%",
+          width: isMobile ? "520px" : "700px",
+          height: isMobile ? "840px" : "1080px",
           transform: "translate(-50%, -50%)",
           marginTop: "0",
         }}
@@ -98,7 +98,7 @@ export default function Appareil3D({
         className="absolute z-50 pointer-events-none overflow-visible"
         style={{
           left: "50%",
-          top: isMobile ? "56%" : "57%",
+          top: isMobile ? "49%" : "57%",
           width: isMobile ? "145px" : "220px",
           height: isMobile ? "200px" : "330px",
           transform: "translate(-50%, -50%)",
