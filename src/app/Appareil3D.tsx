@@ -155,9 +155,9 @@ export default function Appareil3D({
             camera-controls={false}
             shadow-intensity="1"
             exposure="1.1"
-            camera-orbit={isMobile ? "0deg 86deg 1.9m" : "0deg 86deg 2.4m"}
-            camera-target={isMobile ? "0m -0.9m 0m" : "0m -1.15m 0m"}
-            field-of-view="26deg"
+            camera-orbit={isMobile ? "0deg 90deg 1.7m" : "0deg 90deg 2.05m"}
+            camera-target="0m -0.23m -2.05m"
+            field-of-view="18deg"
             className="absolute inset-0 pointer-events-none"
             style={{
               display: "block",
