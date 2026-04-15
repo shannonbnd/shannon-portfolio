@@ -88,7 +88,7 @@ import svgPaths from "./svg-fqlwtc3i54";
           </div>
 
           <div
-            className="absolute left-[252px] top-[10px] h-[70px] w-[170px] overflow-clip lg:hidden"
+            className="absolute left-[252px] top-[5px] h-[70px] w-[170px] overflow-clip lg:hidden"
             data-name="Bouton commande"
           >
             <div className="absolute left-[117px] top-[16px] h-[40px] w-[42px] overflow-clip bg-[rgba(255,255,255,0)]">
