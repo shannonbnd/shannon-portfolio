@@ -110,25 +110,56 @@ export default function Appareil3D({
             onClick={onTicketClick}
             type="button"
             aria-label={`Ouvrir le projet ${currentTicket.title}`}
-            className="absolute overflow-hidden border border-black/10 bg-white shadow-xl pointer-events-auto transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="absolute overflow-hidden bg-white shadow-xl pointer-events-auto transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
               position: "absolute",
               zIndex: 60,
               top: isMobile ? -30 : -10,
               left: 0,
               width: isMobile ? "145px" : "220px",
-              height: isMobile ? "185px" : "275px",
+              height: isMobile ? "205px" : "310px",
               transform: showTicket ? "translateY(8px)" : "translateY(-90px)",
               opacity: showTicket ? 1 : 0,
-              borderRadius: "0px",
+              borderRadius: "2px",
+              padding: isMobile ? "10px 10px 32px" : "14px 14px 46px",
             }}
           >
-            <img
-              src={currentTicket.image}
-              alt={currentTicket.title}
-              className="block h-full w-full object-cover"
-              draggable={false}
-            />
+            <div className="flex h-full w-full flex-col">
+              <img
+                src={currentTicket.image}
+                alt={currentTicket.title}
+                className="block w-full flex-1 object-cover"
+                draggable={false}
+              />
+              <div
+                className="flex items-end justify-between text-black"
+                style={{
+                  minHeight: isMobile ? "22px" : "30px",
+                  paddingTop: isMobile ? "8px" : "12px",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Source Code Pro', sans-serif",
+                    fontSize: isMobile ? "9px" : "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  {currentTicket.title}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Source Code Pro', sans-serif",
+                    fontSize: isMobile ? "8px" : "10px",
+                    fontWeight: 500,
+                    opacity: 0.75,
+                  }}
+                >
+                  2026
+                </span>
+              </div>
+            </div>
           </button>
         )}
       </div>
