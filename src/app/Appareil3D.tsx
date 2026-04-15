@@ -52,18 +52,18 @@ export default function Appareil3D({
         @keyframes receipt-print {
           0% {
             opacity: 0;
-            transform: translate3d(0, -18px, 0) scaleY(0.04) rotateX(86deg) rotateZ(-1.5deg);
-            filter: blur(6px);
+            transform: translate3d(0, -10px, 0) scaleY(0.05) rotateX(72deg) rotateZ(0deg);
+            filter: blur(3px);
           }
           12% {
             opacity: 1;
           }
-          52% {
-            transform: translate3d(0, 10px, 0) scaleY(1.03) rotateX(8deg) rotateZ(-0.8deg);
+          48% {
+            transform: translate3d(0, 6px, 0) scaleY(1.02) rotateX(8deg) rotateZ(0deg);
             filter: blur(0);
           }
-          74% {
-            transform: translate3d(0, 0, 0) scaleY(0.99) rotateX(-3deg) rotateZ(0.4deg);
+          72% {
+            transform: translate3d(0, 2px, 0) scaleY(0.995) rotateX(-2deg) rotateZ(0deg);
           }
           100% {
             opacity: 1;
@@ -81,21 +81,21 @@ export default function Appareil3D({
           }
         }
 
-        @keyframes receipt-curl-left {
+        @keyframes receipt-fold-front {
           0%, 100% {
-            transform: rotate(14deg) translateY(0);
+            transform: rotateX(-10deg) translateY(0);
           }
           50% {
-            transform: rotate(22deg) translateY(-4px);
+            transform: rotateX(-22deg) translateY(-3px);
           }
         }
 
-        @keyframes receipt-curl-right {
+        @keyframes receipt-fold-back {
           0%, 100% {
-            transform: rotate(-16deg) translateY(0);
+            transform: rotateX(12deg) translateY(0);
           }
           50% {
-            transform: rotate(-24deg) translateY(-6px);
+            transform: rotateX(24deg) translateY(-2px);
           }
         }
       `}</style>
@@ -176,10 +176,10 @@ export default function Appareil3D({
               transformStyle: "preserve-3d",
               transform: showTicket
                 ? "translate3d(0, 0, 0) scaleY(1)"
-                : "translate3d(0, -18px, 0) scaleY(0.04)",
+                : "translate3d(0, -10px, 0) scaleY(0.05)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
-              filter: showTicket ? "blur(0)" : "blur(6px)",
+              filter: showTicket ? "blur(0)" : "blur(3px)",
               boxShadow: showTicket
                 ? "0 24px 50px rgba(0, 0, 0, 0.16)"
                 : "0 0 0 rgba(0, 0, 0, 0)",
@@ -322,19 +322,24 @@ export default function Appareil3D({
               </div>
 
               <div
-                className="absolute bottom-[-84px] left-[14px] h-[122px] w-[82px] rounded-[999px] border border-black/10 bg-[#fffef8] shadow-[0_18px_28px_rgba(0,0,0,0.08)]"
+                className="absolute bottom-[-54px] left-[18px] rounded-[999px] border border-black/10 bg-[#fffef8] shadow-[0_18px_28px_rgba(0,0,0,0.08)]"
                 style={{
+                  width: `calc(100% - 36px)`,
+                  height: isMobile ? "82px" : "104px",
                   animation: showTicket
-                    ? "receipt-curl-left 2600ms ease-in-out 980ms infinite"
+                    ? "receipt-fold-front 2600ms ease-in-out 980ms infinite"
                     : "none",
                   transformOrigin: "top center",
                 }}
               />
               <div
-                className="absolute bottom-[-92px] right-[10px] h-[136px] w-[94px] rounded-[999px] border border-black/10 bg-[#fffef8] shadow-[0_22px_32px_rgba(0,0,0,0.08)]"
+                className="absolute left-[30px] rounded-[999px] border border-black/10 bg-[#fffef8]/90 shadow-[0_10px_18px_rgba(0,0,0,0.05)]"
                 style={{
+                  bottom: isMobile ? "-16px" : "-22px",
+                  width: `calc(100% - 60px)`,
+                  height: isMobile ? "58px" : "70px",
                   animation: showTicket
-                    ? "receipt-curl-right 2900ms ease-in-out 1100ms infinite"
+                    ? "receipt-fold-back 3000ms ease-in-out 1080ms infinite"
                     : "none",
                   transformOrigin: "top center",
                 }}
