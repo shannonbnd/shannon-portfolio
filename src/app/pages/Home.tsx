@@ -96,9 +96,9 @@ const restoreInitialCamera = () => {
         baseWidth={440}
         baseHeight={956}
         maxScale={2.4}
-        className="relative h-screen w-full overflow-hidden"
+        className="relative h-screen w-full"
       >
-        <div className="relative h-[956px] w-[440px] overflow-hidden">
+        <div className="relative h-[956px] w-[440px] overflow-visible">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <AccueilImport />
           </div>
