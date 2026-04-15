@@ -54,23 +54,29 @@ export default function Appareil3D({
             filter: blur(10px);
             box-shadow: 0 0 0 rgba(0, 0, 0, 0);
           }
-          18% {
+          12% {
             opacity: 1;
           }
-          52% {
-            transform: translate3d(0, 32px, 40px) rotateX(-18deg) rotateZ(5deg) scale(1.04);
+          28% {
+            transform: translate3d(0, 118px, 70px) rotateX(-12deg) rotateZ(4deg) scale(1.03);
             filter: blur(0);
             box-shadow: 0 26px 50px rgba(0, 0, 0, 0.24);
           }
-          74% {
-            transform: translate3d(0, 2px, 0) rotateX(10deg) rotateZ(-2deg) scale(0.98);
-            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+          48% {
+            transform: translate3d(0, 148px, 0) rotateX(0deg) rotateZ(0deg) scale(1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+          }
+          63% {
+            opacity: 1;
+            transform: translate3d(0, 148px, 0) rotateX(0deg) rotateZ(0deg) scale(1);
+            filter: blur(0);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
           }
           100% {
-            opacity: 1;
-            transform: translate3d(0, 8px, 0) rotateX(0deg) rotateZ(0deg) scale(1);
-            filter: blur(0);
-            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translate3d(26px, 560px, 0) rotateX(8deg) rotateZ(19deg) scale(0.96);
+            filter: blur(1px);
+            box-shadow: 0 42px 78px rgba(0, 0, 0, 0.1);
           }
         }
       `}</style>
@@ -149,16 +155,16 @@ export default function Appareil3D({
               height: isMobile ? "185px" : "275px",
               transformStyle: "preserve-3d",
               transform: showTicket
-                ? "translate3d(0, 8px, 0) rotateX(0deg) rotateZ(0deg) scale(1)"
+                ? "translate3d(0, 148px, 0) rotateX(0deg) rotateZ(0deg) scale(1)"
                 : "translate3d(0, -120px, -140px) rotateX(82deg) rotateZ(-11deg) scale(0.72)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
               filter: showTicket ? "blur(0)" : "blur(10px)",
               boxShadow: showTicket
-                ? "0 18px 36px rgba(0, 0, 0, 0.2)"
+                ? "0 20px 40px rgba(0, 0, 0, 0.22)"
                 : "0 0 0 rgba(0, 0, 0, 0)",
               animation: showTicket
-                ? "ticket-eject 720ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                ? "ticket-eject 1800ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
                 : "none",
             }}
           >
