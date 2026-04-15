@@ -1,8 +1,8 @@
 export const HOME_LAYOUT = {
   toggle: "left-[29px] top-[10px] lg:left-[-500px] lg:top-[34px]",
-  share: "left-[261px] top-[-18px] h-[43px] w-[43px] lg:left-auto lg:right-[-384px] lg:top-[200px]",
-  cv: "left-[315px] top-[-18px] h-[39px] w-[42px] lg:left-auto lg:right-[-442px] lg:top-[200px]",
-  gallery: "left-[369px] top-[-18px] h-[40px] w-[42px] lg:left-auto lg:right-[-500px] lg:top-[200px]",
+  share: "left-[261px] top-[-18px] h-[43px] w-[43px] lg:left-auto lg:right-[-384px] lg:top-[30px]",
+  cv: "left-[315px] top-[-18px] h-[39px] w-[42px] lg:left-auto lg:right-[-442px] lg:top-[30px]",
+  gallery: "left-[369px] top-[-18px] h-[40px] w-[42px] lg:left-auto lg:right-[-500px] lg:top-[30px]",
   photo: "left-[63px] top-[578px] h-[98.625px] w-[309.75px] lg:top-[670px]",
   email: "left-[93px] top-[680px] h-[57.375px] w-[250.875px] lg:top-[765px]",
 
