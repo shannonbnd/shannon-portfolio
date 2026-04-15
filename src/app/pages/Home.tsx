@@ -91,12 +91,12 @@ const restoreInitialCamera = () => {
   };
 
   return (
-    <div className="relative flex h-screen w-full justify-center overflow-hidden bg-background px-0">
+    <div className="relative flex h-[100dvh] w-full items-start justify-center overflow-hidden bg-background px-0">
       <ResponsiveArtboard
         baseWidth={440}
         baseHeight={956}
         maxScale={2.4}
-        className="relative h-screen w-full"
+        className="relative h-[100dvh] w-full self-start"
       >
         <div className="relative h-[956px] w-[440px] overflow-visible">
           <div className="absolute inset-0 z-0 pointer-events-none">
