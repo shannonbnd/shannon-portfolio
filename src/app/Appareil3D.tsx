@@ -110,28 +110,25 @@ export default function Appareil3D({
             onClick={onTicketClick}
             type="button"
             aria-label={`Ouvrir le projet ${currentTicket.title}`}
-            className="absolute overflow-hidden bg-white shadow-xl pointer-events-auto transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="absolute overflow-hidden border border-black/10 bg-white shadow-xl pointer-events-auto transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
               position: "absolute",
               zIndex: 60,
               top: isMobile ? -30 : -10,
               left: 0,
               width: isMobile ? "145px" : "220px",
-              height: isMobile ? "205px" : "310px",
+              height: isMobile ? "185px" : "275px",
               transform: showTicket ? "translateY(8px)" : "translateY(-90px)",
               opacity: showTicket ? 1 : 0,
-              borderRadius: "2px",
-              padding: isMobile ? "10px 10px 52px" : "14px 14px 82px",
+              borderRadius: "0px",
             }}
           >
-            <div className="h-full w-full">
-              <img
-                src={currentTicket.image}
-                alt={currentTicket.title}
-                className="block h-full w-full object-cover"
-                draggable={false}
-              />
-            </div>
+            <img
+              src={currentTicket.image}
+              alt={currentTicket.title}
+              className="block h-full w-full object-cover"
+              draggable={false}
+            />
           </button>
         )}
       </div>
