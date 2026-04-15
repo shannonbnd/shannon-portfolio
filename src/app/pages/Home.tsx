@@ -70,6 +70,10 @@ const restoreInitialCamera = () => {
 
     restoreInitialCamera();
 
+    requestAnimationFrame(() => {
+      restoreInitialCamera();
+    });
+
     setIsPrinting(true);
     setIsLocked(true);
     setShowTicket(false);
