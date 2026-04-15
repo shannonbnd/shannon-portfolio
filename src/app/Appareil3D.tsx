@@ -32,8 +32,8 @@ export default function Appareil3D({
   setInitialCamera,
 }: Appareil3DProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const receiptHeight = isMobile ? 610 : 760;
-  const receiptWidth = isMobile ? 176 : 252;
+  const receiptHeight = isMobile ? 360 : 470;
+  const receiptWidth = isMobile ? 128 : 176;
 
   useEffect(() => {
     const checkScreen = () => {
@@ -52,18 +52,18 @@ export default function Appareil3D({
         @keyframes receipt-print {
           0% {
             opacity: 0;
-            transform: translate3d(0, -10px, 0) scaleY(0.05) rotateX(72deg) rotateZ(0deg);
-            filter: blur(3px);
+            transform: translate3d(0, -6px, 0) scaleY(0.03) rotateX(32deg) rotateZ(0deg);
+            filter: blur(1px);
           }
           12% {
             opacity: 1;
           }
           48% {
-            transform: translate3d(0, 6px, 0) scaleY(1.02) rotateX(8deg) rotateZ(0deg);
+            transform: translate3d(0, 4px, 0) scaleY(1.02) rotateX(6deg) rotateZ(0deg);
             filter: blur(0);
           }
           72% {
-            transform: translate3d(0, 2px, 0) scaleY(0.995) rotateX(-2deg) rotateZ(0deg);
+            transform: translate3d(0, 1px, 0) scaleY(0.995) rotateX(-1deg) rotateZ(0deg);
           }
           100% {
             opacity: 1;
@@ -74,28 +74,28 @@ export default function Appareil3D({
 
         @keyframes receipt-settle {
           0%, 100% {
-            transform: rotateZ(-0.4deg);
+            transform: rotateZ(-0.2deg);
           }
           50% {
-            transform: rotateZ(0.5deg);
+            transform: rotateZ(0.2deg);
           }
         }
 
         @keyframes receipt-fold-front {
           0%, 100% {
-            transform: rotateX(-10deg) translateY(0);
+            transform: rotateX(-8deg) translateY(0);
           }
           50% {
-            transform: rotateX(-22deg) translateY(-3px);
+            transform: rotateX(-18deg) translateY(-2px);
           }
         }
 
         @keyframes receipt-fold-back {
           0%, 100% {
-            transform: rotateX(12deg) translateY(0);
+            transform: rotateX(10deg) translateY(0);
           }
           50% {
-            transform: rotateX(24deg) translateY(-2px);
+            transform: rotateX(18deg) translateY(-1px);
           }
         }
       `}</style>
@@ -151,7 +151,7 @@ export default function Appareil3D({
         className="absolute z-50 pointer-events-none overflow-visible"
         style={{
           left: "50%",
-          top: isMobile ? "53%" : "58%",
+          top: isMobile ? "49%" : "53%",
           width: `${receiptWidth}px`,
           height: `${receiptHeight}px`,
           transform: "translate(-50%, -50%)",
@@ -168,7 +168,7 @@ export default function Appareil3D({
             style={{
               position: "absolute",
               zIndex: 60,
-              top: isMobile ? -8 : 0,
+              top: isMobile ? "18px" : "20px",
               left: 0,
               width: `${receiptWidth}px`,
               height: `${receiptHeight}px`,
@@ -176,12 +176,12 @@ export default function Appareil3D({
               transformStyle: "preserve-3d",
               transform: showTicket
                 ? "translate3d(0, 0, 0) scaleY(1)"
-                : "translate3d(0, -10px, 0) scaleY(0.05)",
+                : "translate3d(0, -6px, 0) scaleY(0.03)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
-              filter: showTicket ? "blur(0)" : "blur(3px)",
+              filter: showTicket ? "blur(0)" : "blur(1px)",
               boxShadow: showTicket
-                ? "0 24px 50px rgba(0, 0, 0, 0.16)"
+                ? "0 18px 36px rgba(0, 0, 0, 0.14)"
                 : "0 0 0 rgba(0, 0, 0, 0)",
               animation: showTicket
                 ? "receipt-print 1300ms cubic-bezier(0.16, 1, 0.3, 1) forwards, receipt-settle 4200ms ease-in-out 1300ms infinite"
@@ -193,8 +193,8 @@ export default function Appareil3D({
                 <div
                   style={{
                     fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "10px" : "12px",
-                    letterSpacing: "0.34em",
+                    fontSize: isMobile ? "8px" : "10px",
+                    letterSpacing: "0.22em",
                     fontWeight: 700,
                   }}
                 >
@@ -203,9 +203,9 @@ export default function Appareil3D({
                 <div
                   style={{
                     fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "8px" : "10px",
-                    letterSpacing: "0.18em",
-                    marginTop: "6px",
+                    fontSize: isMobile ? "7px" : "8px",
+                    letterSpacing: "0.12em",
+                    marginTop: "4px",
                     opacity: 0.72,
                   }}
                 >
@@ -213,22 +213,22 @@ export default function Appareil3D({
                 </div>
               </div>
 
-              <div className="px-3 pb-0 pt-3">
+              <div className="px-2.5 pb-0 pt-2.5">
                 <img
                   src={currentTicket.image}
                   alt={currentTicket.title}
-                  className="block h-[120px] w-full object-cover md:h-[148px]"
+                  className="block h-[84px] w-full object-cover md:h-[110px]"
                   draggable={false}
                 />
               </div>
 
-              <div className="px-3 py-3 text-black">
+              <div className="px-2.5 py-2.5 text-black">
                 <div className="flex items-start justify-between gap-3 border-b border-dashed border-black/20 pb-2">
                   <div>
                     <div
                       style={{
                         fontFamily: "'Source Code Pro', sans-serif",
-                        fontSize: isMobile ? "18px" : "22px",
+                        fontSize: isMobile ? "12px" : "15px",
                         fontWeight: 700,
                         lineHeight: 1,
                         letterSpacing: "0.08em",
@@ -239,8 +239,8 @@ export default function Appareil3D({
                     <div
                       style={{
                         fontFamily: "'Source Code Pro', sans-serif",
-                        fontSize: isMobile ? "8px" : "10px",
-                        marginTop: "7px",
+                        fontSize: isMobile ? "6px" : "8px",
+                        marginTop: "5px",
                         opacity: 0.72,
                       }}
                     >
@@ -250,7 +250,7 @@ export default function Appareil3D({
                   <div
                     style={{
                       fontFamily: "'Source Code Pro', sans-serif",
-                      fontSize: isMobile ? "8px" : "10px",
+                      fontSize: isMobile ? "6px" : "8px",
                       textAlign: "right",
                       opacity: 0.72,
                     }}
@@ -264,7 +264,7 @@ export default function Appareil3D({
                   className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 border-b border-dashed border-black/20 py-3"
                   style={{
                     fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "8px" : "10px",
+                    fontSize: isMobile ? "6px" : "8px",
                     lineHeight: 1.5,
                   }}
                 >
@@ -284,7 +284,7 @@ export default function Appareil3D({
                   className="border-b border-dashed border-black/20 py-3"
                   style={{
                     fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "8px" : "10px",
+                    fontSize: isMobile ? "6px" : "8px",
                     lineHeight: 1.55,
                   }}
                 >
@@ -299,7 +299,7 @@ export default function Appareil3D({
                   <div
                     style={{
                       fontFamily: "'Source Code Pro', sans-serif",
-                      fontSize: isMobile ? "8px" : "10px",
+                      fontSize: isMobile ? "6px" : "8px",
                       lineHeight: 1.45,
                     }}
                   >
@@ -313,7 +313,7 @@ export default function Appareil3D({
                         className="block bg-black"
                         style={{
                           width: `${(index % 3) + 1}px`,
-                          height: `${isMobile ? 28 : 34}px`,
+                          height: `${isMobile ? 18 : 24}px`,
                         }}
                       />
                     ))}
@@ -322,10 +322,12 @@ export default function Appareil3D({
               </div>
 
               <div
-                className="absolute bottom-[-54px] left-[18px] rounded-[999px] border border-black/10 bg-[#fffef8] shadow-[0_18px_28px_rgba(0,0,0,0.08)]"
+                className="absolute rounded-[999px] border border-black/10 bg-[#fffef8] shadow-[0_12px_20px_rgba(0,0,0,0.07)]"
                 style={{
-                  width: `calc(100% - 36px)`,
-                  height: isMobile ? "82px" : "104px",
+                  left: "10px",
+                  bottom: isMobile ? "22px" : "28px",
+                  width: `calc(100% - 20px)`,
+                  height: isMobile ? "56px" : "74px",
                   animation: showTicket
                     ? "receipt-fold-front 2600ms ease-in-out 980ms infinite"
                     : "none",
@@ -333,11 +335,12 @@ export default function Appareil3D({
                 }}
               />
               <div
-                className="absolute left-[30px] rounded-[999px] border border-black/10 bg-[#fffef8]/90 shadow-[0_10px_18px_rgba(0,0,0,0.05)]"
+                className="absolute rounded-[999px] border border-black/10 bg-[#fffef8]/90 shadow-[0_6px_12px_rgba(0,0,0,0.04)]"
                 style={{
-                  bottom: isMobile ? "-16px" : "-22px",
-                  width: `calc(100% - 60px)`,
-                  height: isMobile ? "58px" : "70px",
+                  left: "18px",
+                  bottom: isMobile ? "54px" : "68px",
+                  width: `calc(100% - 36px)`,
+                  height: isMobile ? "34px" : "46px",
                   animation: showTicket
                     ? "receipt-fold-back 3000ms ease-in-out 1080ms infinite"
                     : "none",
