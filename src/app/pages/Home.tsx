@@ -95,14 +95,8 @@ const restoreInitialCamera = async () => {
     }, 120);
 
     setTimeout(() => {
-      setShowTicket(false);
-    }, 2050);
-
-    setTimeout(() => {
-      setCurrentTicket(null);
       setIsPrinting(false);
-      setIsLocked(false);
-    }, 2250);
+    }, 1550);
   };
 
   const handleTicketClick = (e: MouseEvent<HTMLButtonElement>) => {

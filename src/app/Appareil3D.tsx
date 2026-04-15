@@ -32,6 +32,8 @@ export default function Appareil3D({
   setInitialCamera,
 }: Appareil3DProps) {
   const [isMobile, setIsMobile] = useState(false);
+  const receiptHeight = isMobile ? 610 : 760;
+  const receiptWidth = isMobile ? 176 : 252;
 
   useEffect(() => {
     const checkScreen = () => {
@@ -47,36 +49,53 @@ export default function Appareil3D({
   return (
     <>
       <style>{`
-        @keyframes ticket-eject {
+        @keyframes receipt-print {
           0% {
             opacity: 0;
-            transform: translate3d(0, -120px, -140px) rotateX(82deg) rotateZ(-11deg) scale(0.72);
-            filter: blur(10px);
-            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            transform: translate3d(0, -18px, 0) scaleY(0.04) rotateX(86deg) rotateZ(-1.5deg);
+            filter: blur(6px);
           }
           12% {
             opacity: 1;
           }
-          28% {
-            transform: translate3d(0, 118px, 70px) rotateX(-12deg) rotateZ(4deg) scale(1.03);
+          52% {
+            transform: translate3d(0, 10px, 0) scaleY(1.03) rotateX(8deg) rotateZ(-0.8deg);
             filter: blur(0);
-            box-shadow: 0 26px 50px rgba(0, 0, 0, 0.24);
           }
-          48% {
-            transform: translate3d(0, 148px, 0) rotateX(0deg) rotateZ(0deg) scale(1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
-          }
-          63% {
-            opacity: 1;
-            transform: translate3d(0, 148px, 0) rotateX(0deg) rotateZ(0deg) scale(1);
-            filter: blur(0);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+          74% {
+            transform: translate3d(0, 0, 0) scaleY(0.99) rotateX(-3deg) rotateZ(0.4deg);
           }
           100% {
-            opacity: 0;
-            transform: translate3d(26px, 560px, 0) rotateX(8deg) rotateZ(19deg) scale(0.96);
-            filter: blur(1px);
-            box-shadow: 0 42px 78px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scaleY(1) rotateX(0deg) rotateZ(0deg);
+            filter: blur(0);
+          }
+        }
+
+        @keyframes receipt-settle {
+          0%, 100% {
+            transform: rotateZ(-0.4deg);
+          }
+          50% {
+            transform: rotateZ(0.5deg);
+          }
+        }
+
+        @keyframes receipt-curl-left {
+          0%, 100% {
+            transform: rotate(14deg) translateY(0);
+          }
+          50% {
+            transform: rotate(22deg) translateY(-4px);
+          }
+        }
+
+        @keyframes receipt-curl-right {
+          0%, 100% {
+            transform: rotate(-16deg) translateY(0);
+          }
+          50% {
+            transform: rotate(-24deg) translateY(-6px);
           }
         }
       `}</style>
@@ -132,9 +151,9 @@ export default function Appareil3D({
         className="absolute z-50 pointer-events-none overflow-visible"
         style={{
           left: "50%",
-          top: isMobile ? "52%" : "57%",
-          width: isMobile ? "145px" : "220px",
-          height: isMobile ? "200px" : "330px",
+          top: isMobile ? "53%" : "58%",
+          width: `${receiptWidth}px`,
+          height: `${receiptHeight}px`,
           transform: "translate(-50%, -50%)",
           marginTop: "0",
           perspective: "1200px",
@@ -145,35 +164,182 @@ export default function Appareil3D({
             onClick={onTicketClick}
             type="button"
             aria-label={`Ouvrir le projet ${currentTicket.title}`}
-            className="absolute overflow-hidden border border-black/10 bg-white pointer-events-auto will-change-transform"
+            className="absolute overflow-hidden border border-black/10 bg-[#fffef8] pointer-events-auto will-change-transform"
             style={{
               position: "absolute",
               zIndex: 60,
-              top: isMobile ? -30 : -10,
+              top: isMobile ? -8 : 0,
               left: 0,
-              width: isMobile ? "145px" : "220px",
-              height: isMobile ? "185px" : "275px",
+              width: `${receiptWidth}px`,
+              height: `${receiptHeight}px`,
+              transformOrigin: "50% 0%",
               transformStyle: "preserve-3d",
               transform: showTicket
-                ? "translate3d(0, 148px, 0) rotateX(0deg) rotateZ(0deg) scale(1)"
-                : "translate3d(0, -120px, -140px) rotateX(82deg) rotateZ(-11deg) scale(0.72)",
+                ? "translate3d(0, 0, 0) scaleY(1)"
+                : "translate3d(0, -18px, 0) scaleY(0.04)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
-              filter: showTicket ? "blur(0)" : "blur(10px)",
+              filter: showTicket ? "blur(0)" : "blur(6px)",
               boxShadow: showTicket
-                ? "0 20px 40px rgba(0, 0, 0, 0.22)"
+                ? "0 24px 50px rgba(0, 0, 0, 0.16)"
                 : "0 0 0 rgba(0, 0, 0, 0)",
               animation: showTicket
-                ? "ticket-eject 1800ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                ? "receipt-print 1300ms cubic-bezier(0.16, 1, 0.3, 1) forwards, receipt-settle 4200ms ease-in-out 1300ms infinite"
                 : "none",
             }}
           >
-            <img
-              src={currentTicket.image}
-              alt={currentTicket.title}
-              className="block h-full w-full object-cover"
-              draggable={false}
-            />
+            <div className="relative h-full w-full bg-[#fffef8]">
+              <div className="border-b border-dashed border-black/20 px-3 pb-3 pt-4 text-center text-black">
+                <div
+                  style={{
+                    fontFamily: "'Source Code Pro', sans-serif",
+                    fontSize: isMobile ? "10px" : "12px",
+                    letterSpacing: "0.34em",
+                    fontWeight: 700,
+                  }}
+                >
+                  SHANNON BUNDHOO
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'Source Code Pro', sans-serif",
+                    fontSize: isMobile ? "8px" : "10px",
+                    letterSpacing: "0.18em",
+                    marginTop: "6px",
+                    opacity: 0.72,
+                  }}
+                >
+                  PROJECT RECEIPT
+                </div>
+              </div>
+
+              <div className="px-3 pb-0 pt-3">
+                <img
+                  src={currentTicket.image}
+                  alt={currentTicket.title}
+                  className="block h-[120px] w-full object-cover md:h-[148px]"
+                  draggable={false}
+                />
+              </div>
+
+              <div className="px-3 py-3 text-black">
+                <div className="flex items-start justify-between gap-3 border-b border-dashed border-black/20 pb-2">
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: "'Source Code Pro', sans-serif",
+                        fontSize: isMobile ? "18px" : "22px",
+                        fontWeight: 700,
+                        lineHeight: 1,
+                        letterSpacing: "0.08em",
+                      }}
+                    >
+                      {currentTicket.title}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "'Source Code Pro', sans-serif",
+                        fontSize: isMobile ? "8px" : "10px",
+                        marginTop: "7px",
+                        opacity: 0.72,
+                      }}
+                    >
+                      {currentTicket.subtitle.toUpperCase()}
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'Source Code Pro', sans-serif",
+                      fontSize: isMobile ? "8px" : "10px",
+                      textAlign: "right",
+                      opacity: 0.72,
+                    }}
+                  >
+                    <div>04/2026</div>
+                    <div>01/{PROJECTS.findIndex((project) => project.id === currentTicket.id) + 1}</div>
+                  </div>
+                </div>
+
+                <div
+                  className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 border-b border-dashed border-black/20 py-3"
+                  style={{
+                    fontFamily: "'Source Code Pro', sans-serif",
+                    fontSize: isMobile ? "8px" : "10px",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  <span>IMAGE KEYFRAME</span>
+                  <span>01</span>
+                  <span>PROJECT WORLD</span>
+                  <span>02</span>
+                  <span>DETAIL LAYER</span>
+                  <span>03</span>
+                  <span>VISUAL NOISE</span>
+                  <span>04</span>
+                  <span>ARCHIVE TRACE</span>
+                  <span>05</span>
+                </div>
+
+                <div
+                  className="border-b border-dashed border-black/20 py-3"
+                  style={{
+                    fontFamily: "'Source Code Pro', sans-serif",
+                    fontSize: isMobile ? "8px" : "10px",
+                    lineHeight: 1.55,
+                  }}
+                >
+                  <p>{currentTicket.subtitle}</p>
+                  <p className="mt-2 opacity-80">
+                    Long thermal print prototype generated from the selected project.
+                    The paper keeps printing until it invades the page.
+                  </p>
+                </div>
+
+                <div className="flex items-end justify-between py-3">
+                  <div
+                    style={{
+                      fontFamily: "'Source Code Pro', sans-serif",
+                      fontSize: isMobile ? "8px" : "10px",
+                      lineHeight: 1.45,
+                    }}
+                  >
+                    <div>OPEN PROJECT</div>
+                    <div className="opacity-65">{currentTicket.route}</div>
+                  </div>
+                  <div className="flex gap-[3px] opacity-80">
+                    {Array.from({ length: 12 }).map((_, index) => (
+                      <span
+                        key={index}
+                        className="block bg-black"
+                        style={{
+                          width: `${(index % 3) + 1}px`,
+                          height: `${isMobile ? 28 : 34}px`,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className="absolute bottom-[-84px] left-[14px] h-[122px] w-[82px] rounded-[999px] border border-black/10 bg-[#fffef8] shadow-[0_18px_28px_rgba(0,0,0,0.08)]"
+                style={{
+                  animation: showTicket
+                    ? "receipt-curl-left 2600ms ease-in-out 980ms infinite"
+                    : "none",
+                  transformOrigin: "top center",
+                }}
+              />
+              <div
+                className="absolute bottom-[-92px] right-[10px] h-[136px] w-[94px] rounded-[999px] border border-black/10 bg-[#fffef8] shadow-[0_22px_32px_rgba(0,0,0,0.08)]"
+                style={{
+                  animation: showTicket
+                    ? "receipt-curl-right 2900ms ease-in-out 1100ms infinite"
+                    : "none",
+                  transformOrigin: "top center",
+                }}
+              />
+            </div>
           </button>
         )}
       </div>
