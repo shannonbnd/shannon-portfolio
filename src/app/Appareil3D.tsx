@@ -35,9 +35,9 @@ export default function Appareil3D({
   const receiptHeight = isMobile ? 390 : 520;
   const receiptWidth = isMobile ? 156 : 214;
   const mainPanelHeight = isMobile ? 290 : 380;
-  const straightTailHeight = isMobile ? 74 : 98;
-  const loopTop = mainPanelHeight + straightTailHeight - (isMobile ? 4 : 6);
-  const returnTop = loopTop + (isMobile ? 54 : 72);
+  const straightTailHeight = isMobile ? 68 : 88;
+  const waveTop = mainPanelHeight + straightTailHeight - (isMobile ? 2 : 4);
+  const rollTop = waveTop + (isMobile ? 82 : 108);
 
   useEffect(() => {
     const checkScreen = () => {
@@ -97,7 +97,7 @@ export default function Appareil3D({
             opacity: 1;
             transform: scaleY(0.04);
           }
-          66% {
+          72% {
             opacity: 1;
             transform: scaleY(0.9);
           }
@@ -107,41 +107,41 @@ export default function Appareil3D({
           }
         }
 
-        @keyframes receipt-tail-front {
+        @keyframes receipt-wave-grow {
           0% {
             opacity: 0;
-            transform: scaleY(0.04) rotateX(-2deg) translateY(-8px);
+            transform: scaleY(0.04) rotateX(-1deg) translateY(-10px);
           }
-          70% {
+          74% {
             opacity: 0;
-            transform: scaleY(0.08) rotateX(-3deg) translateY(-8px);
+            transform: scaleY(0.08) rotateX(-1deg) translateY(-10px);
           }
-          86% {
+          90% {
             opacity: 1;
-            transform: scaleY(0.82) rotateX(-10deg) translateY(-2px);
+            transform: scaleY(0.82) rotateX(-6deg) translateY(-2px);
           }
           100% {
             opacity: 1;
-            transform: scaleY(1) rotateX(-16deg) translateY(0);
+            transform: scaleY(1) rotateX(-10deg) translateY(0);
           }
         }
 
-        @keyframes receipt-tail-back {
+        @keyframes receipt-roll-grow {
           0% {
             opacity: 0;
-            transform: scaleY(0.04) rotateX(2deg) translateY(-8px);
+            transform: scaleX(0.5) scaleY(0.3) translateY(-4px);
           }
-          78% {
+          84% {
             opacity: 0;
-            transform: scaleY(0.06) rotateX(3deg) translateY(-8px);
+            transform: scaleX(0.56) scaleY(0.32) translateY(-4px);
           }
-          92% {
+          95% {
             opacity: 1;
-            transform: scaleY(0.8) rotateX(8deg) translateY(-2px);
+            transform: scaleX(0.9) scaleY(0.92) translateY(-1px);
           }
           100% {
             opacity: 1;
-            transform: scaleY(1) rotateX(14deg) translateY(0);
+            transform: scaleX(1) scaleY(1) translateY(0);
           }
         }
       `}</style>
@@ -384,30 +384,46 @@ export default function Appareil3D({
                 }}
               />
               <div
-                className="absolute left-[6%] border border-black/10 bg-[#fffef8]"
+                className="absolute left-[2%] border border-black/10 bg-[#fffef8]"
                 style={{
-                  top: `${loopTop}px`,
-                  width: "88%",
-                  height: isMobile ? "56px" : "74px",
-                  borderRadius: "999px",
+                  top: `${waveTop}px`,
+                  width: "96%",
+                  height: isMobile ? "92px" : "124px",
+                  borderTopLeftRadius: "8px",
+                  borderTopRightRadius: "8px",
+                  borderBottomLeftRadius: "52% 92%",
+                  borderBottomRightRadius: "48% 88%",
                   animation: showTicket
-                    ? "receipt-tail-front 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    ? "receipt-wave-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
                     : "none",
                   transformOrigin: "top center",
                   boxShadow: "0 10px 18px rgba(0, 0, 0, 0.06)",
                 }}
               />
               <div
-                className="absolute left-[18%] border-x border-black/10 bg-[#fffef8]"
+                className="absolute left-[1%] rounded-[999px] border border-black/10 bg-[#fffef8]"
                 style={{
-                  top: `${returnTop}px`,
-                  width: "64%",
-                  height: isMobile ? "44px" : "58px",
+                  top: `${rollTop}px`,
+                  width: "98%",
+                  height: isMobile ? "26px" : "34px",
                   animation: showTicket
-                    ? "receipt-tail-back 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    ? "receipt-roll-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
                     : "none",
-                  transformOrigin: "top center",
-                  boxShadow: "0 6px 12px rgba(0, 0, 0, 0.04)",
+                  transformOrigin: "center center",
+                  boxShadow: "0 8px 14px rgba(0, 0, 0, 0.05)",
+                }}
+              />
+              <div
+                className="absolute right-[-3px] rounded-[999px] border border-black/10 bg-[#fffef8]"
+                style={{
+                  top: `${rollTop + (isMobile ? 1 : 2)}px`,
+                  width: isMobile ? "18px" : "22px",
+                  height: isMobile ? "22px" : "28px",
+                  animation: showTicket
+                    ? "receipt-roll-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    : "none",
+                  transformOrigin: "center center",
+                  boxShadow: "0 6px 10px rgba(0, 0, 0, 0.04)",
                 }}
               />
             </div>
