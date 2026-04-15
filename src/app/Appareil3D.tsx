@@ -34,6 +34,10 @@ export default function Appareil3D({
   const [isMobile, setIsMobile] = useState(false);
   const receiptHeight = isMobile ? 390 : 520;
   const receiptWidth = isMobile ? 156 : 214;
+  const mainPanelHeight = isMobile ? 290 : 380;
+  const straightTailHeight = isMobile ? 74 : 98;
+  const loopTop = mainPanelHeight + straightTailHeight - (isMobile ? 4 : 6);
+  const returnTop = loopTop + (isMobile ? 54 : 72);
 
   useEffect(() => {
     const checkScreen = () => {
@@ -83,19 +87,19 @@ export default function Appareil3D({
 
         @keyframes receipt-tail-front {
           0%, 100% {
-            transform: rotateX(-24deg) translateY(0);
+            transform: rotateX(-16deg) translateY(0);
           }
           50% {
-            transform: rotateX(-38deg) translateY(-1px);
+            transform: rotateX(-28deg) translateY(-1px);
           }
         }
 
         @keyframes receipt-tail-back {
           0%, 100% {
-            transform: rotateX(24deg) translateY(0);
+            transform: rotateX(14deg) translateY(0);
           }
           50% {
-            transform: rotateX(38deg) translateY(-1px);
+            transform: rotateX(24deg) translateY(-1px);
           }
         }
       `}</style>
@@ -164,7 +168,7 @@ export default function Appareil3D({
             onClick={onTicketClick}
             type="button"
             aria-label={`Ouvrir le projet ${currentTicket.title}`}
-            className="absolute overflow-hidden border border-black/10 bg-[#fffef8] pointer-events-auto will-change-transform"
+            className="absolute overflow-visible pointer-events-auto will-change-transform"
             style={{
               position: "absolute",
               zIndex: 60,
@@ -180,15 +184,18 @@ export default function Appareil3D({
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
               filter: showTicket ? "blur(0)" : "blur(0.5px)",
-              boxShadow: showTicket
-                ? "0 18px 36px rgba(0, 0, 0, 0.14)"
-                : "0 0 0 rgba(0, 0, 0, 0)",
               animation: showTicket
                 ? "receipt-print 1300ms cubic-bezier(0.16, 1, 0.3, 1) forwards, receipt-settle 4200ms ease-in-out 1300ms infinite"
                 : "none",
             }}
           >
-            <div className="relative h-full w-full bg-[#fffef8]">
+            <div
+              className="relative overflow-hidden border border-black/10 bg-[#fffef8]"
+              style={{
+                height: `${mainPanelHeight}px`,
+                boxShadow: "0 18px 36px rgba(0, 0, 0, 0.14)",
+              }}
+            >
               <div className="border-b border-dashed border-black/20 px-3 pb-3 pt-4 text-center text-black">
                 <div
                   style={{
@@ -322,29 +329,39 @@ export default function Appareil3D({
               </div>
 
               <div
-                className="absolute left-0 w-full border-x border-b border-black/10 bg-[#fffef8] shadow-[0_10px_18px_rgba(0,0,0,0.06)]"
+                className="absolute left-[11%] border-x border-black/10 bg-[#fffef8]"
                 style={{
-                  bottom: isMobile ? "-34px" : "-44px",
-                  height: isMobile ? "52px" : "66px",
-                  borderBottomLeftRadius: "999px",
-                  borderBottomRightRadius: "999px",
+                  top: `${mainPanelHeight - 1}px`,
+                  width: "78%",
+                  height: `${straightTailHeight}px`,
+                  boxShadow: "0 10px 18px rgba(0, 0, 0, 0.05)",
+                }}
+              />
+              <div
+                className="absolute left-[6%] border border-black/10 bg-[#fffef8]"
+                style={{
+                  top: `${loopTop}px`,
+                  width: "88%",
+                  height: isMobile ? "56px" : "74px",
+                  borderRadius: "999px",
                   animation: showTicket
                     ? "receipt-tail-front 2400ms ease-in-out 980ms infinite"
                     : "none",
                   transformOrigin: "top center",
+                  boxShadow: "0 10px 18px rgba(0, 0, 0, 0.06)",
                 }}
               />
               <div
-                className="absolute border-x border-black/10 bg-[#fffef8]/92"
+                className="absolute left-[18%] border-x border-black/10 bg-[#fffef8]"
                 style={{
-                  left: "10%",
-                  bottom: isMobile ? "-6px" : "-8px",
-                  width: "80%",
-                  height: isMobile ? "24px" : "32px",
+                  top: `${returnTop}px`,
+                  width: "64%",
+                  height: isMobile ? "44px" : "58px",
                   animation: showTicket
                     ? "receipt-tail-back 2400ms ease-in-out 980ms infinite"
                     : "none",
                   transformOrigin: "top center",
+                  boxShadow: "0 6px 12px rgba(0, 0, 0, 0.04)",
                 }}
               />
             </div>
