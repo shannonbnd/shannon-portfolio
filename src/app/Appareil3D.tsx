@@ -59,24 +59,15 @@ export default function Appareil3D({
             transform: translate3d(0, -4px, 0) scaleY(0.03) rotateX(14deg) rotateZ(0deg);
             filter: blur(0.5px);
           }
-          12% {
+          10% {
             opacity: 1;
           }
-          24% {
-            transform: translate3d(0, -1px, 0) scaleY(0.22) rotateX(9deg) rotateZ(0deg);
-          }
-          38% {
-            transform: translate3d(0, 2px, 0) scaleY(0.52) rotateX(5deg) rotateZ(0deg);
-          }
-          48% {
-            transform: translate3d(0, 3px, 0) scaleY(0.72) rotateX(3deg) rotateZ(0deg);
+          62% {
+            transform: translate3d(0, 2px, 0) scaleY(0.82) rotateX(2deg) rotateZ(0deg);
             filter: blur(0);
           }
-          64% {
-            transform: translate3d(0, 2px, 0) scaleY(0.9) rotateX(1deg) rotateZ(0deg);
-          }
-          72% {
-            transform: translate3d(0, 1px, 0) scaleY(0.997) rotateX(-0.5deg) rotateZ(0deg);
+          84% {
+            transform: translate3d(0, 1px, 0) scaleY(0.97) rotateX(0.4deg) rotateZ(0deg);
           }
           100% {
             opacity: 1;
@@ -102,15 +93,13 @@ export default function Appareil3D({
             opacity: 0;
             transform: scaleY(0.02);
           }
-          18% {
+          12% {
             opacity: 1;
-            transform: scaleY(0.08);
+            transform: scaleY(0.04);
           }
-          42% {
-            transform: scaleY(0.42);
-          }
-          65% {
-            transform: scaleY(0.78);
+          66% {
+            opacity: 1;
+            transform: scaleY(0.9);
           }
           100% {
             opacity: 1;
@@ -121,15 +110,15 @@ export default function Appareil3D({
         @keyframes receipt-tail-front {
           0% {
             opacity: 0;
-            transform: scaleY(0.08) rotateX(-4deg) translateY(-8px);
+            transform: scaleY(0.04) rotateX(-2deg) translateY(-8px);
           }
-          45% {
+          70% {
             opacity: 0;
-            transform: scaleY(0.12) rotateX(-6deg) translateY(-8px);
+            transform: scaleY(0.08) rotateX(-3deg) translateY(-8px);
           }
-          68% {
+          86% {
             opacity: 1;
-            transform: scaleY(0.68) rotateX(-10deg) translateY(-2px);
+            transform: scaleY(0.82) rotateX(-10deg) translateY(-2px);
           }
           100% {
             opacity: 1;
@@ -140,15 +129,15 @@ export default function Appareil3D({
         @keyframes receipt-tail-back {
           0% {
             opacity: 0;
-            transform: scaleY(0.08) rotateX(4deg) translateY(-8px);
+            transform: scaleY(0.04) rotateX(2deg) translateY(-8px);
           }
-          58% {
+          78% {
             opacity: 0;
-            transform: scaleY(0.08) rotateX(6deg) translateY(-8px);
+            transform: scaleY(0.06) rotateX(3deg) translateY(-8px);
           }
-          80% {
+          92% {
             opacity: 1;
-            transform: scaleY(0.72) rotateX(10deg) translateY(-2px);
+            transform: scaleY(0.8) rotateX(8deg) translateY(-2px);
           }
           100% {
             opacity: 1;
