@@ -134,12 +134,12 @@ export default function Appareil3D({
 
       {currentTicket && showTicket && (
         <div
-          className="absolute z-[120] overflow-visible pointer-events-none"
+          className="absolute z-50 overflow-visible"
           style={{
             left: "50%",
-            top: isMobile ? "56%" : "54%",
-            width: isMobile ? "1800px" : "2600px",
-            height: isMobile ? "2500px" : "3400px",
+            top: isMobile ? "47%" : "50%",
+            width: isMobile ? "360px" : "480px",
+            height: isMobile ? "620px" : "860px",
             transform: "translate(-50%, -50%)",
           }}
         >
@@ -148,7 +148,6 @@ export default function Appareil3D({
             ref={ticketViewerRef}
             src="/ticket-print.glb"
             alt={`Ticket du projet ${currentTicket.title}`}
-            orientation="0deg 90deg 0deg"
             autoplay
             animation-crossfade-duration="0"
             interaction-prompt="none"
@@ -156,9 +155,9 @@ export default function Appareil3D({
             camera-controls={false}
             shadow-intensity="1"
             exposure="1.1"
-            camera-orbit={isMobile ? "56deg 86deg 0.38m" : "56deg 86deg 0.46m"}
-            camera-target="0m -0.28m -2.18m"
-            field-of-view="26deg"
+            camera-orbit={isMobile ? "56deg 86deg 1.22m" : "56deg 86deg 1.46m"}
+            camera-target="0m -0.18m -2.18m"
+            field-of-view="24deg"
             className="absolute inset-0 pointer-events-none"
             style={{
               display: "block",
@@ -174,9 +173,9 @@ export default function Appareil3D({
             className="absolute pointer-events-auto cursor-pointer"
             style={{
               left: "50%",
-              top: isMobile ? "16%" : "14%",
-              width: isMobile ? "620px" : "860px",
-              height: isMobile ? "900px" : "1220px",
+              top: isMobile ? "13%" : "11%",
+              width: isMobile ? "170px" : "220px",
+              height: isMobile ? "260px" : "340px",
               transform: "translateX(-50%)",
               background: "transparent",
             }}
