@@ -32,8 +32,8 @@ export default function Appareil3D({
   setInitialCamera,
 }: Appareil3DProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const receiptHeight = isMobile ? 360 : 470;
-  const receiptWidth = isMobile ? 128 : 176;
+  const receiptHeight = isMobile ? 390 : 520;
+  const receiptWidth = isMobile ? 156 : 214;
 
   useEffect(() => {
     const checkScreen = () => {
@@ -52,18 +52,18 @@ export default function Appareil3D({
         @keyframes receipt-print {
           0% {
             opacity: 0;
-            transform: translate3d(0, -6px, 0) scaleY(0.03) rotateX(32deg) rotateZ(0deg);
-            filter: blur(1px);
+            transform: translate3d(0, -4px, 0) scaleY(0.03) rotateX(14deg) rotateZ(0deg);
+            filter: blur(0.5px);
           }
           12% {
             opacity: 1;
           }
           48% {
-            transform: translate3d(0, 4px, 0) scaleY(1.02) rotateX(6deg) rotateZ(0deg);
+            transform: translate3d(0, 3px, 0) scaleY(1.01) rotateX(3deg) rotateZ(0deg);
             filter: blur(0);
           }
           72% {
-            transform: translate3d(0, 1px, 0) scaleY(0.995) rotateX(-1deg) rotateZ(0deg);
+            transform: translate3d(0, 1px, 0) scaleY(0.997) rotateX(-0.5deg) rotateZ(0deg);
           }
           100% {
             opacity: 1;
@@ -81,21 +81,21 @@ export default function Appareil3D({
           }
         }
 
-        @keyframes receipt-fold-front {
+        @keyframes receipt-tail-front {
           0%, 100% {
-            transform: rotateX(-8deg) translateY(0);
+            transform: rotateX(-24deg) translateY(0);
           }
           50% {
-            transform: rotateX(-18deg) translateY(-2px);
+            transform: rotateX(-38deg) translateY(-1px);
           }
         }
 
-        @keyframes receipt-fold-back {
+        @keyframes receipt-tail-back {
           0%, 100% {
-            transform: rotateX(10deg) translateY(0);
+            transform: rotateX(24deg) translateY(0);
           }
           50% {
-            transform: rotateX(18deg) translateY(-1px);
+            transform: rotateX(38deg) translateY(-1px);
           }
         }
       `}</style>
@@ -168,7 +168,7 @@ export default function Appareil3D({
             style={{
               position: "absolute",
               zIndex: 60,
-              top: isMobile ? "18px" : "20px",
+              top: isMobile ? "12px" : "14px",
               left: 0,
               width: `${receiptWidth}px`,
               height: `${receiptHeight}px`,
@@ -176,10 +176,10 @@ export default function Appareil3D({
               transformStyle: "preserve-3d",
               transform: showTicket
                 ? "translate3d(0, 0, 0) scaleY(1)"
-                : "translate3d(0, -6px, 0) scaleY(0.03)",
+                : "translate3d(0, -4px, 0) scaleY(0.03)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
-              filter: showTicket ? "blur(0)" : "blur(1px)",
+              filter: showTicket ? "blur(0)" : "blur(0.5px)",
               boxShadow: showTicket
                 ? "0 18px 36px rgba(0, 0, 0, 0.14)"
                 : "0 0 0 rgba(0, 0, 0, 0)",
@@ -193,7 +193,7 @@ export default function Appareil3D({
                 <div
                   style={{
                     fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "8px" : "10px",
+                    fontSize: isMobile ? "9px" : "11px",
                     letterSpacing: "0.22em",
                     fontWeight: 700,
                   }}
@@ -203,7 +203,7 @@ export default function Appareil3D({
                 <div
                   style={{
                     fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "7px" : "8px",
+                    fontSize: isMobile ? "7px" : "9px",
                     letterSpacing: "0.12em",
                     marginTop: "4px",
                     opacity: 0.72,
@@ -217,7 +217,7 @@ export default function Appareil3D({
                 <img
                   src={currentTicket.image}
                   alt={currentTicket.title}
-                  className="block h-[84px] w-full object-cover md:h-[110px]"
+                  className="block h-[96px] w-full object-cover md:h-[128px]"
                   draggable={false}
                 />
               </div>
@@ -228,7 +228,7 @@ export default function Appareil3D({
                     <div
                       style={{
                         fontFamily: "'Source Code Pro', sans-serif",
-                        fontSize: isMobile ? "12px" : "15px",
+                        fontSize: isMobile ? "14px" : "18px",
                         fontWeight: 700,
                         lineHeight: 1,
                         letterSpacing: "0.08em",
@@ -239,7 +239,7 @@ export default function Appareil3D({
                     <div
                       style={{
                         fontFamily: "'Source Code Pro', sans-serif",
-                        fontSize: isMobile ? "6px" : "8px",
+                        fontSize: isMobile ? "7px" : "9px",
                         marginTop: "5px",
                         opacity: 0.72,
                       }}
@@ -250,7 +250,7 @@ export default function Appareil3D({
                   <div
                     style={{
                       fontFamily: "'Source Code Pro', sans-serif",
-                      fontSize: isMobile ? "6px" : "8px",
+                      fontSize: isMobile ? "7px" : "9px",
                       textAlign: "right",
                       opacity: 0.72,
                     }}
@@ -264,7 +264,7 @@ export default function Appareil3D({
                   className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 border-b border-dashed border-black/20 py-3"
                   style={{
                     fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "6px" : "8px",
+                    fontSize: isMobile ? "7px" : "9px",
                     lineHeight: 1.5,
                   }}
                 >
@@ -284,7 +284,7 @@ export default function Appareil3D({
                   className="border-b border-dashed border-black/20 py-3"
                   style={{
                     fontFamily: "'Source Code Pro', sans-serif",
-                    fontSize: isMobile ? "6px" : "8px",
+                    fontSize: isMobile ? "7px" : "9px",
                     lineHeight: 1.55,
                   }}
                 >
@@ -299,7 +299,7 @@ export default function Appareil3D({
                   <div
                     style={{
                       fontFamily: "'Source Code Pro', sans-serif",
-                      fontSize: isMobile ? "6px" : "8px",
+                      fontSize: isMobile ? "7px" : "9px",
                       lineHeight: 1.45,
                     }}
                   >
@@ -313,7 +313,7 @@ export default function Appareil3D({
                         className="block bg-black"
                         style={{
                           width: `${(index % 3) + 1}px`,
-                          height: `${isMobile ? 18 : 24}px`,
+                          height: `${isMobile ? 20 : 28}px`,
                         }}
                       />
                     ))}
@@ -322,27 +322,27 @@ export default function Appareil3D({
               </div>
 
               <div
-                className="absolute rounded-[999px] border border-black/10 bg-[#fffef8] shadow-[0_12px_20px_rgba(0,0,0,0.07)]"
+                className="absolute left-0 w-full border-x border-b border-black/10 bg-[#fffef8] shadow-[0_10px_18px_rgba(0,0,0,0.06)]"
                 style={{
-                  left: "10px",
-                  bottom: isMobile ? "22px" : "28px",
-                  width: `calc(100% - 20px)`,
-                  height: isMobile ? "56px" : "74px",
+                  bottom: isMobile ? "-34px" : "-44px",
+                  height: isMobile ? "52px" : "66px",
+                  borderBottomLeftRadius: "999px",
+                  borderBottomRightRadius: "999px",
                   animation: showTicket
-                    ? "receipt-fold-front 2600ms ease-in-out 980ms infinite"
+                    ? "receipt-tail-front 2400ms ease-in-out 980ms infinite"
                     : "none",
                   transformOrigin: "top center",
                 }}
               />
               <div
-                className="absolute rounded-[999px] border border-black/10 bg-[#fffef8]/90 shadow-[0_6px_12px_rgba(0,0,0,0.04)]"
+                className="absolute border-x border-black/10 bg-[#fffef8]/92"
                 style={{
-                  left: "18px",
-                  bottom: isMobile ? "54px" : "68px",
-                  width: `calc(100% - 36px)`,
-                  height: isMobile ? "34px" : "46px",
+                  left: "10%",
+                  bottom: isMobile ? "-6px" : "-8px",
+                  width: "80%",
+                  height: isMobile ? "24px" : "32px",
                   animation: showTicket
-                    ? "receipt-fold-back 3000ms ease-in-out 1080ms infinite"
+                    ? "receipt-tail-back 2400ms ease-in-out 980ms infinite"
                     : "none",
                   transformOrigin: "top center",
                 }}
