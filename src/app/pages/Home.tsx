@@ -43,6 +43,7 @@ const restoreInitialCamera = () => {
 
   if (!viewer || !initialCamera) return;
 
+  viewer.cameraControls = false;
   viewer.cameraOrbit = initialCamera.orbit;
   viewer.cameraTarget = initialCamera.target;
   viewer.fieldOfView = initialCamera.fov;
@@ -55,6 +56,16 @@ const restoreInitialCamera = () => {
   if (typeof viewer.requestUpdate === "function") {
     viewer.requestUpdate();
   }
+
+  requestAnimationFrame(() => {
+    viewer.cameraOrbit = initialCamera.orbit;
+    viewer.cameraTarget = initialCamera.target;
+    viewer.fieldOfView = initialCamera.fov;
+
+    if (typeof viewer.jumpCameraToGoal === "function") {
+      viewer.jumpCameraToGoal();
+    }
+  });
 };
 
   const resetHomeState = () => {
@@ -69,10 +80,6 @@ const restoreInitialCamera = () => {
     if (isPrinting) return;
 
     restoreInitialCamera();
-
-    requestAnimationFrame(() => {
-      restoreInitialCamera();
-    });
 
     setIsPrinting(true);
     setIsLocked(true);
