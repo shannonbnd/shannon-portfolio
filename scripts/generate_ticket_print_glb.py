@@ -183,6 +183,7 @@ def main():
     bpy.context.view_layer.objects.active = root
 
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    scene.frame_set(scene.frame_end)
     bpy.ops.export_scene.gltf(
         filepath=OUTPUT_PATH,
         export_format="GLB",

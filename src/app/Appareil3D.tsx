@@ -58,16 +58,16 @@ export default function Appareil3D({
     if (!viewer || !showTicket) return;
 
     const restartAnimation = () => {
-      if (typeof viewer.pause === "function") {
-        viewer.pause();
-      }
-
       if ("currentTime" in viewer) {
         viewer.currentTime = 0;
       }
 
+      if (Array.isArray(viewer.availableAnimations) && viewer.availableAnimations[0]) {
+        viewer.animationName = viewer.availableAnimations[0];
+      }
+
       if (typeof viewer.play === "function") {
-        viewer.play({ repetitions: 1 });
+        viewer.play();
       }
     };
 
