@@ -37,7 +37,7 @@ export default function Home() {
     };
   }, []);
 
-const restoreInitialCamera = () => {
+const restoreInitialCamera = async () => {
   const viewer = viewerRef.current;
   const initialCamera = initialCameraRef.current;
 
@@ -57,15 +57,17 @@ const restoreInitialCamera = () => {
     viewer.requestUpdate();
   }
 
-  requestAnimationFrame(() => {
-    viewer.cameraOrbit = initialCamera.orbit;
-    viewer.cameraTarget = initialCamera.target;
-    viewer.fieldOfView = initialCamera.fov;
-
-    if (typeof viewer.jumpCameraToGoal === "function") {
-      viewer.jumpCameraToGoal();
-    }
+  await new Promise<void>((resolve) => {
+    requestAnimationFrame(() => resolve());
   });
+
+  viewer.cameraOrbit = initialCamera.orbit;
+  viewer.cameraTarget = initialCamera.target;
+  viewer.fieldOfView = initialCamera.fov;
+
+  if (typeof viewer.jumpCameraToGoal === "function") {
+    viewer.jumpCameraToGoal();
+  }
 };
 
   const resetHomeState = () => {
@@ -73,13 +75,13 @@ const restoreInitialCamera = () => {
     setIsLocked(false);
     setShowTicket(false);
     setCurrentTicket(null);
-    restoreInitialCamera();
+    void restoreInitialCamera();
   };
 
-  const handleTakePhoto = () => {
+  const handleTakePhoto = async () => {
     if (isPrinting) return;
 
-    restoreInitialCamera();
+    await restoreInitialCamera();
 
     setIsPrinting(true);
     setIsLocked(true);
