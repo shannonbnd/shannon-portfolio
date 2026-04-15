@@ -134,12 +134,12 @@ export default function Appareil3D({
 
       {currentTicket && showTicket && (
         <div
-          className="absolute z-50 overflow-visible"
+          className="absolute z-[120] overflow-visible pointer-events-none"
           style={{
             left: "50%",
-            top: isMobile ? "61%" : "59%",
-            width: isMobile ? "1500px" : "2200px",
-            height: isMobile ? "2200px" : "3000px",
+            top: isMobile ? "66%" : "64%",
+            width: isMobile ? "2200px" : "3200px",
+            height: isMobile ? "3000px" : "4200px",
             transform: "translate(-50%, -50%)",
           }}
         >
@@ -155,9 +155,9 @@ export default function Appareil3D({
             camera-controls={false}
             shadow-intensity="1"
             exposure="1.1"
-            camera-orbit={isMobile ? "56deg 86deg 0.24m" : "56deg 86deg 0.3m"}
-            camera-target="0m -0.34m -2.18m"
-            field-of-view="22deg"
+            camera-orbit={isMobile ? "56deg 86deg 0.14m" : "56deg 86deg 0.18m"}
+            camera-target="0m -0.46m -2.18m"
+            field-of-view="20deg"
             className="absolute inset-0 pointer-events-none"
             style={{
               display: "block",
@@ -173,9 +173,9 @@ export default function Appareil3D({
             className="absolute pointer-events-auto cursor-pointer"
             style={{
               left: "50%",
-              top: isMobile ? "17%" : "15%",
-              width: isMobile ? "520px" : "720px",
-              height: isMobile ? "760px" : "980px",
+              top: isMobile ? "20%" : "18%",
+              width: isMobile ? "760px" : "1020px",
+              height: isMobile ? "1080px" : "1440px",
               transform: "translateX(-50%)",
               background: "transparent",
             }}
