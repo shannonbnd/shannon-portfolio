@@ -46,6 +46,15 @@ const restoreInitialCamera = () => {
   viewer.cameraOrbit = initialCamera.orbit;
   viewer.cameraTarget = initialCamera.target;
   viewer.fieldOfView = initialCamera.fov;
+
+  // Force the viewer to snap back before the print animation starts.
+  if (typeof viewer.jumpCameraToGoal === "function") {
+    viewer.jumpCameraToGoal();
+  }
+
+  if (typeof viewer.requestUpdate === "function") {
+    viewer.requestUpdate();
+  }
 };
 
   const resetHomeState = () => {
