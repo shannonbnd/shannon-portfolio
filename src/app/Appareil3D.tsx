@@ -46,6 +46,34 @@ export default function Appareil3D({
 
   return (
     <>
+      <style>{`
+        @keyframes ticket-eject {
+          0% {
+            opacity: 0;
+            transform: translate3d(0, -120px, -140px) rotateX(82deg) rotateZ(-11deg) scale(0.72);
+            filter: blur(10px);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+          }
+          18% {
+            opacity: 1;
+          }
+          52% {
+            transform: translate3d(0, 32px, 40px) rotateX(-18deg) rotateZ(5deg) scale(1.04);
+            filter: blur(0);
+            box-shadow: 0 26px 50px rgba(0, 0, 0, 0.24);
+          }
+          74% {
+            transform: translate3d(0, 2px, 0) rotateX(10deg) rotateZ(-2deg) scale(0.98);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+          }
+          100% {
+            opacity: 1;
+            transform: translate3d(0, 8px, 0) rotateX(0deg) rotateZ(0deg) scale(1);
+            filter: blur(0);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
+          }
+        }
+      `}</style>
       <model-viewer
         ref={viewerRef}
         src="/appareil.glb"
@@ -103,6 +131,7 @@ export default function Appareil3D({
           height: isMobile ? "200px" : "330px",
           transform: "translate(-50%, -50%)",
           marginTop: "0",
+          perspective: "1200px",
         }}
       >
         {currentTicket && (
@@ -110,7 +139,7 @@ export default function Appareil3D({
             onClick={onTicketClick}
             type="button"
             aria-label={`Ouvrir le projet ${currentTicket.title}`}
-            className="absolute overflow-hidden border border-black/10 bg-white shadow-xl pointer-events-auto transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="absolute overflow-hidden border border-black/10 bg-white pointer-events-auto will-change-transform"
             style={{
               position: "absolute",
               zIndex: 60,
@@ -118,9 +147,19 @@ export default function Appareil3D({
               left: 0,
               width: isMobile ? "145px" : "220px",
               height: isMobile ? "185px" : "275px",
-              transform: showTicket ? "translateY(8px)" : "translateY(-90px)",
+              transformStyle: "preserve-3d",
+              transform: showTicket
+                ? "translate3d(0, 8px, 0) rotateX(0deg) rotateZ(0deg) scale(1)"
+                : "translate3d(0, -120px, -140px) rotateX(82deg) rotateZ(-11deg) scale(0.72)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
+              filter: showTicket ? "blur(0)" : "blur(10px)",
+              boxShadow: showTicket
+                ? "0 18px 36px rgba(0, 0, 0, 0.2)"
+                : "0 0 0 rgba(0, 0, 0, 0)",
+              animation: showTicket
+                ? "ticket-eject 720ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                : "none",
             }}
           >
             <img
