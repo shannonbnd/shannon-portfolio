@@ -3,8 +3,8 @@ import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const DESKTOP_CAMERA_ORBIT = "-5deg 84deg 12m";
-const MOBILE_CAMERA_ORBIT = "-5deg 84deg 6m";
+const DESKTOP_CAMERA_ORBIT = "-5deg 84deg 16m";
+const MOBILE_CAMERA_ORBIT = "-5deg 84deg 8m";
 const DESKTOP_CAMERA_TARGET = "auto auto auto";
 const MOBILE_CAMERA_TARGET = "auto auto auto";
 const DESKTOP_FOV = "15deg";
