@@ -35,9 +35,9 @@ export default function Appareil3D({
   const receiptHeight = isMobile ? 390 : 520;
   const receiptWidth = isMobile ? 156 : 214;
   const mainPanelHeight = isMobile ? 290 : 380;
-  const straightTailHeight = isMobile ? 68 : 88;
-  const waveTop = mainPanelHeight + straightTailHeight - (isMobile ? 2 : 4);
-  const rollTop = waveTop + (isMobile ? 82 : 108);
+  const straightTailHeight = isMobile ? 86 : 114;
+  const waveTop = mainPanelHeight + straightTailHeight - (isMobile ? 8 : 10);
+  const rollTop = waveTop + (isMobile ? 64 : 84);
 
   useEffect(() => {
     const checkScreen = () => {
@@ -56,18 +56,18 @@ export default function Appareil3D({
         @keyframes receipt-print {
           0% {
             opacity: 0;
-            transform: translate3d(0, -4px, 0) scaleY(0.03) rotateX(14deg) rotateZ(0deg);
+            transform: translate3d(0, -3px, 0) scaleY(0.02) rotateX(12deg) rotateZ(0deg);
             filter: blur(0.5px);
           }
           10% {
             opacity: 1;
           }
-          62% {
-            transform: translate3d(0, 2px, 0) scaleY(0.82) rotateX(2deg) rotateZ(0deg);
+          60% {
+            transform: translate3d(0, 2px, 0) scaleY(0.86) rotateX(1.5deg) rotateZ(0deg);
             filter: blur(0);
           }
-          84% {
-            transform: translate3d(0, 1px, 0) scaleY(0.97) rotateX(0.4deg) rotateZ(0deg);
+          86% {
+            transform: translate3d(0, 1px, 0) scaleY(0.98) rotateX(0.3deg) rotateZ(0deg);
           }
           100% {
             opacity: 1;
@@ -93,13 +93,13 @@ export default function Appareil3D({
             opacity: 0;
             transform: scaleY(0.02);
           }
-          12% {
+          10% {
             opacity: 1;
             transform: scaleY(0.04);
           }
-          72% {
+          76% {
             opacity: 1;
-            transform: scaleY(0.9);
+            transform: scaleY(0.98);
           }
           100% {
             opacity: 1;
@@ -110,32 +110,32 @@ export default function Appareil3D({
         @keyframes receipt-wave-grow {
           0% {
             opacity: 0;
-            transform: scaleY(0.04) rotateX(-1deg) translateY(-10px);
+            transform: scale(0.96, 0.1) translateY(-12px);
           }
           74% {
             opacity: 0;
-            transform: scaleY(0.08) rotateX(-1deg) translateY(-10px);
+            transform: scale(0.96, 0.12) translateY(-12px);
           }
-          90% {
+          92% {
             opacity: 1;
-            transform: scaleY(0.82) rotateX(-6deg) translateY(-2px);
+            transform: scale(0.98, 0.88) translateY(-2px);
           }
           100% {
             opacity: 1;
-            transform: scaleY(1) rotateX(-10deg) translateY(0);
+            transform: scale(1, 1) translateY(0);
           }
         }
 
         @keyframes receipt-roll-grow {
           0% {
             opacity: 0;
-            transform: scaleX(0.5) scaleY(0.3) translateY(-4px);
+            transform: scaleX(0.4) scaleY(0.22) translateY(-4px);
           }
-          84% {
+          86% {
             opacity: 0;
-            transform: scaleX(0.56) scaleY(0.32) translateY(-4px);
+            transform: scaleX(0.42) scaleY(0.24) translateY(-4px);
           }
-          95% {
+          96% {
             opacity: 1;
             transform: scaleX(0.9) scaleY(0.92) translateY(-1px);
           }
@@ -379,22 +379,22 @@ export default function Appareil3D({
                   boxShadow: "0 10px 18px rgba(0, 0, 0, 0.05)",
                   transformOrigin: "top center",
                   animation: showTicket
-                    ? "receipt-tail-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    ? "receipt-tail-grow 1550ms linear forwards"
                     : "none",
                 }}
               />
               <div
-                className="absolute left-[2%] border border-black/10 bg-[#fffef8]"
+                className="absolute left-[1%] border border-black/10 bg-[#fffef8]"
                 style={{
                   top: `${waveTop}px`,
-                  width: "96%",
-                  height: isMobile ? "92px" : "124px",
-                  borderTopLeftRadius: "8px",
-                  borderTopRightRadius: "8px",
-                  borderBottomLeftRadius: "52% 92%",
-                  borderBottomRightRadius: "48% 88%",
+                  width: "98%",
+                  height: isMobile ? "72px" : "96px",
+                  borderTopLeftRadius: "18px",
+                  borderTopRightRadius: "18px",
+                  borderBottomLeftRadius: "48% 88%",
+                  borderBottomRightRadius: "52% 92%",
                   animation: showTicket
-                    ? "receipt-wave-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    ? "receipt-wave-grow 1550ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards"
                     : "none",
                   transformOrigin: "top center",
                   boxShadow: "0 10px 18px rgba(0, 0, 0, 0.06)",
@@ -405,9 +405,9 @@ export default function Appareil3D({
                 style={{
                   top: `${rollTop}px`,
                   width: "98%",
-                  height: isMobile ? "26px" : "34px",
+                  height: isMobile ? "22px" : "30px",
                   animation: showTicket
-                    ? "receipt-roll-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    ? "receipt-roll-grow 1550ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards"
                     : "none",
                   transformOrigin: "center center",
                   boxShadow: "0 8px 14px rgba(0, 0, 0, 0.05)",
@@ -420,7 +420,7 @@ export default function Appareil3D({
                   width: isMobile ? "18px" : "22px",
                   height: isMobile ? "22px" : "28px",
                   animation: showTicket
-                    ? "receipt-roll-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    ? "receipt-roll-grow 1550ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards"
                     : "none",
                   transformOrigin: "center center",
                   boxShadow: "0 6px 10px rgba(0, 0, 0, 0.04)",
