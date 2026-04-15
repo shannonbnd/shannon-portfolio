@@ -86,7 +86,7 @@ export default function Appareil3D({
           background: "transparent",
           overflow: "visible",
           left: isMobile ? "54%" : "54%",
-          top: isMobile ? "28%" : "38%",
+          top: isMobile ? "31%" : "38%",
           width: isMobile ? "520px" : "700px",
           height: isMobile ? "840px" : "1080px",
           transform: "translate(-50%, -50%)",
@@ -98,7 +98,7 @@ export default function Appareil3D({
         className="absolute z-50 pointer-events-none overflow-visible"
         style={{
           left: "50%",
-          top: isMobile ? "49%" : "57%",
+          top: isMobile ? "52%" : "57%",
           width: isMobile ? "145px" : "220px",
           height: isMobile ? "200px" : "330px",
           transform: "translate(-50%, -50%)",
