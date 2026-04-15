@@ -62,9 +62,18 @@ export default function Appareil3D({
           12% {
             opacity: 1;
           }
+          24% {
+            transform: translate3d(0, -1px, 0) scaleY(0.22) rotateX(9deg) rotateZ(0deg);
+          }
+          38% {
+            transform: translate3d(0, 2px, 0) scaleY(0.52) rotateX(5deg) rotateZ(0deg);
+          }
           48% {
-            transform: translate3d(0, 3px, 0) scaleY(1.01) rotateX(3deg) rotateZ(0deg);
+            transform: translate3d(0, 3px, 0) scaleY(0.72) rotateX(3deg) rotateZ(0deg);
             filter: blur(0);
+          }
+          64% {
+            transform: translate3d(0, 2px, 0) scaleY(0.9) rotateX(1deg) rotateZ(0deg);
           }
           72% {
             transform: translate3d(0, 1px, 0) scaleY(0.997) rotateX(-0.5deg) rotateZ(0deg);
@@ -77,29 +86,73 @@ export default function Appareil3D({
         }
 
         @keyframes receipt-settle {
-          0%, 100% {
-            transform: rotateZ(-0.2deg);
+          0% {
+            transform: rotateZ(0deg);
           }
-          50% {
-            transform: rotateZ(0.2deg);
+          45% {
+            transform: rotateZ(-0.22deg);
+          }
+          100% {
+            transform: rotateZ(0deg);
+          }
+        }
+
+        @keyframes receipt-tail-grow {
+          0% {
+            opacity: 0;
+            transform: scaleY(0.02);
+          }
+          18% {
+            opacity: 1;
+            transform: scaleY(0.08);
+          }
+          42% {
+            transform: scaleY(0.42);
+          }
+          65% {
+            transform: scaleY(0.78);
+          }
+          100% {
+            opacity: 1;
+            transform: scaleY(1);
           }
         }
 
         @keyframes receipt-tail-front {
-          0%, 100% {
-            transform: rotateX(-16deg) translateY(0);
+          0% {
+            opacity: 0;
+            transform: scaleY(0.08) rotateX(-4deg) translateY(-8px);
           }
-          50% {
-            transform: rotateX(-28deg) translateY(-1px);
+          45% {
+            opacity: 0;
+            transform: scaleY(0.12) rotateX(-6deg) translateY(-8px);
+          }
+          68% {
+            opacity: 1;
+            transform: scaleY(0.68) rotateX(-10deg) translateY(-2px);
+          }
+          100% {
+            opacity: 1;
+            transform: scaleY(1) rotateX(-16deg) translateY(0);
           }
         }
 
         @keyframes receipt-tail-back {
-          0%, 100% {
-            transform: rotateX(14deg) translateY(0);
+          0% {
+            opacity: 0;
+            transform: scaleY(0.08) rotateX(4deg) translateY(-8px);
           }
-          50% {
-            transform: rotateX(24deg) translateY(-1px);
+          58% {
+            opacity: 0;
+            transform: scaleY(0.08) rotateX(6deg) translateY(-8px);
+          }
+          80% {
+            opacity: 1;
+            transform: scaleY(0.72) rotateX(10deg) translateY(-2px);
+          }
+          100% {
+            opacity: 1;
+            transform: scaleY(1) rotateX(14deg) translateY(0);
           }
         }
       `}</style>
@@ -185,7 +238,7 @@ export default function Appareil3D({
               borderRadius: "0px",
               filter: showTicket ? "blur(0)" : "blur(0.5px)",
               animation: showTicket
-                ? "receipt-print 1300ms cubic-bezier(0.16, 1, 0.3, 1) forwards, receipt-settle 4200ms ease-in-out 1300ms infinite"
+                ? "receipt-print 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards, receipt-settle 480ms ease-out 1380ms 1"
                 : "none",
             }}
           >
@@ -335,6 +388,10 @@ export default function Appareil3D({
                   width: "78%",
                   height: `${straightTailHeight}px`,
                   boxShadow: "0 10px 18px rgba(0, 0, 0, 0.05)",
+                  transformOrigin: "top center",
+                  animation: showTicket
+                    ? "receipt-tail-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    : "none",
                 }}
               />
               <div
@@ -345,7 +402,7 @@ export default function Appareil3D({
                   height: isMobile ? "56px" : "74px",
                   borderRadius: "999px",
                   animation: showTicket
-                    ? "receipt-tail-front 2400ms ease-in-out 980ms infinite"
+                    ? "receipt-tail-front 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
                     : "none",
                   transformOrigin: "top center",
                   boxShadow: "0 10px 18px rgba(0, 0, 0, 0.06)",
@@ -358,7 +415,7 @@ export default function Appareil3D({
                   width: "64%",
                   height: isMobile ? "44px" : "58px",
                   animation: showTicket
-                    ? "receipt-tail-back 2400ms ease-in-out 980ms infinite"
+                    ? "receipt-tail-back 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
                     : "none",
                   transformOrigin: "top center",
                   boxShadow: "0 6px 12px rgba(0, 0, 0, 0.04)",
