@@ -11,8 +11,6 @@ import svgPaths from "./svg-fqlwtc3i54";
           className="absolute left-0 top-0 h-[956px] w-[440px] overflow-visible"
           data-name="Accueil"
         >
-          <div className="absolute left-[40px] top-[144px] h-[540px] w-[356px] overflow-clip bg-[#b3b3b3]" />
-          
           <div className={`absolute ${HOME_LAYOUT.email}`} data-name="BOUTON EMAIL">
             <svg
               className="absolute block size-full"
