@@ -1,4 +1,4 @@
-› import svgPaths from "./svg-fqlwtc3i54";
+import svgPaths from "./svg-fqlwtc3i54";
   import { HOME_LAYOUT } from "../app/homeLayout";
 
   export default function Accueil() {

@@ -31,7 +31,7 @@ export default function PradaPage() {
           }}
         >
           <video
-            src="/public/FINAL.mov"
+            src="/FINAL.mov"
             autoPlay
             muted
             loop
@@ -52,7 +52,7 @@ export default function PradaPage() {
           }}
         >
           <video
-            src="/public/MOTIONTEASING.mov"
+            src="/MOTIONTEASING.mov"
             autoPlay
             muted
             loop
