@@ -126,17 +126,19 @@ def main():
     roll = create_cylinder("Roll", radius=0.12, depth=width_tail * 1.06, parent=roll_pivot, material=material)
     roll.location = (0.0, 0.0, 0.0)
 
-    # Animate the main panel printing downward.
-    main_panel.scale = (1.0, 1.0, 0.03)
-    main_panel.keyframe_insert(data_path="scale", frame=1)
-    main_panel.scale = (1.0, 1.0, 0.86)
-    main_panel.keyframe_insert(data_path="scale", frame=56)
+    # Keep the printed part visible from the start; animate the trailing paper.
     main_panel.scale = (1.0, 1.0, 1.0)
-    main_panel.keyframe_insert(data_path="scale", frame=72)
+    main_panel.keyframe_insert(data_path="scale", frame=1)
+    main_panel.keyframe_insert(data_path="scale", frame=96)
 
-    straight.scale = (1.0, 1.0, 0.02)
+    root.location = (0.0, 0.0, 0.18)
+    root.keyframe_insert(data_path="location", frame=1)
+    root.location = (0.0, 0.0, 0.0)
+    root.keyframe_insert(data_path="location", frame=72)
+
+    straight.scale = (1.0, 1.0, 0.18)
     straight.keyframe_insert(data_path="scale", frame=1)
-    straight.scale = (1.0, 1.0, 0.98)
+    straight.scale = (1.0, 1.0, 0.76)
     straight.keyframe_insert(data_path="scale", frame=70)
     straight.scale = (1.0, 1.0, 1.0)
     straight.keyframe_insert(data_path="scale", frame=78)
