@@ -1,4 +1,4 @@
-import { useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { useNavigate } from "react-router";
 import "@google/model-viewer/dist/model-viewer";
 import AccueilImport from "../../imports/Accueil";
@@ -23,6 +23,19 @@ export default function Home() {
   const [isLocked, setIsLocked] = useState(false);
   const [showTicket, setShowTicket] = useState(false);
   const [currentTicket, setCurrentTicket] = useState<ProjectTicket | null>(null);
+
+  useEffect(() => {
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+    };
+  }, []);
 
 const restoreInitialCamera = () => {
   const viewer = viewerRef.current;
@@ -78,14 +91,14 @@ const restoreInitialCamera = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full justify-center overflow-x-hidden bg-background px-0">
+    <div className="relative flex h-screen w-full justify-center overflow-hidden bg-background px-0">
       <ResponsiveArtboard
         baseWidth={440}
         baseHeight={956}
         maxScale={2.4}
-        className="relative w-full"
+        className="relative h-screen w-full overflow-hidden"
       >
-        <div className="relative h-[956px] w-[440px] overflow-visible">
+        <div className="relative h-[956px] w-[440px] overflow-hidden">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <AccueilImport />
           </div>

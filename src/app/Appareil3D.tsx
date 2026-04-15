@@ -50,7 +50,7 @@ export default function Appareil3D({
         ref={viewerRef}
         src="/appareil.glb"
         alt="Modèle 3D"
-        scale={isMobile ? "0.56 0.56 0.56" : "0.5 0.5 0.5"}
+        scale={isMobile ? "0.64 0.64 0.64" : "0.58 0.58 0.58"}
         camera-orbit={isMobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT}
         field-of-view={isMobile ? MOBILE_FOV : DESKTOP_FOV}
         camera-target={isMobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET}
