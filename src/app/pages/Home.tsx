@@ -162,12 +162,6 @@ const restoreInitialCamera = async () => {
           />
 
           <button
-            onClick={() => {}}
-            className={`absolute z-20 cursor-pointer ${HOME_LAYOUT.share}`}
-            aria-label="Partager"
-          />
-
-          <button
             onClick={handleTakePhoto}
             className={`absolute z-20 cursor-pointer ${HOME_LAYOUT.photo}`}
             aria-label="Prendre en photo"
