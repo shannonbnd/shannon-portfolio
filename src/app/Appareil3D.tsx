@@ -1,10 +1,4 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type MouseEvent,
-  type RefObject,
-} from "react";
+import { useEffect, useState, type MouseEvent, type RefObject } from "react";
 import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
@@ -21,7 +15,6 @@ type Appareil3DProps = {
   isLocked: boolean;
   currentTicket: ProjectTicket | null;
   showTicket: boolean;
-  ticketAnimationKey: number;
   onTicketClick: (e: MouseEvent<HTMLButtonElement>) => void;
   setInitialCamera: (camera: {
     orbit: string;
@@ -35,12 +28,16 @@ export default function Appareil3D({
   isLocked,
   currentTicket,
   showTicket,
-  ticketAnimationKey,
   onTicketClick,
   setInitialCamera,
 }: Appareil3DProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const ticketViewerRef = useRef<any>(null);
+  const receiptHeight = isMobile ? 390 : 520;
+  const receiptWidth = isMobile ? 156 : 214;
+  const mainPanelHeight = isMobile ? 290 : 380;
+  const straightTailHeight = isMobile ? 86 : 114;
+  const waveTop = mainPanelHeight + straightTailHeight - (isMobile ? 8 : 10);
+  const rollTop = waveTop + (isMobile ? 64 : 84);
 
   useEffect(() => {
     const checkScreen = () => {
@@ -53,37 +50,101 @@ export default function Appareil3D({
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  useEffect(() => {
-    const viewer = ticketViewerRef.current;
-    if (!viewer || !showTicket) return;
-
-    const restartAnimation = () => {
-      if ("currentTime" in viewer) {
-        viewer.currentTime = 0;
-      }
-
-      if (Array.isArray(viewer.availableAnimations) && viewer.availableAnimations[0]) {
-        viewer.animationName = viewer.availableAnimations[0];
-      }
-
-      if (typeof viewer.play === "function") {
-        viewer.play();
-      }
-    };
-
-    if (viewer.loaded) {
-      restartAnimation();
-      return;
-    }
-
-    viewer.addEventListener("load", restartAnimation, { once: true });
-    return () => {
-      viewer.removeEventListener("load", restartAnimation);
-    };
-  }, [showTicket, ticketAnimationKey]);
-
   return (
     <>
+      <style>{`
+        @keyframes receipt-print {
+          0% {
+            opacity: 0;
+            transform: translate3d(0, -3px, 0) scaleY(0.02) rotateX(12deg) rotateZ(0deg);
+            filter: blur(0.5px);
+          }
+          10% {
+            opacity: 1;
+          }
+          60% {
+            transform: translate3d(0, 2px, 0) scaleY(0.86) rotateX(1.5deg) rotateZ(0deg);
+            filter: blur(0);
+          }
+          86% {
+            transform: translate3d(0, 1px, 0) scaleY(0.98) rotateX(0.3deg) rotateZ(0deg);
+          }
+          100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scaleY(1) rotateX(0deg) rotateZ(0deg);
+            filter: blur(0);
+          }
+        }
+
+        @keyframes receipt-settle {
+          0% {
+            transform: rotateZ(0deg);
+          }
+          45% {
+            transform: rotateZ(-0.22deg);
+          }
+          100% {
+            transform: rotateZ(0deg);
+          }
+        }
+
+        @keyframes receipt-tail-grow {
+          0% {
+            opacity: 0;
+            transform: scaleY(0.02);
+          }
+          10% {
+            opacity: 1;
+            transform: scaleY(0.04);
+          }
+          76% {
+            opacity: 1;
+            transform: scaleY(0.98);
+          }
+          100% {
+            opacity: 1;
+            transform: scaleY(1);
+          }
+        }
+
+        @keyframes receipt-wave-grow {
+          0% {
+            opacity: 0;
+            transform: scale(0.96, 0.1) translateY(-12px);
+          }
+          74% {
+            opacity: 0;
+            transform: scale(0.96, 0.12) translateY(-12px);
+          }
+          92% {
+            opacity: 1;
+            transform: scale(0.98, 0.88) translateY(-2px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1, 1) translateY(0);
+          }
+        }
+
+        @keyframes receipt-roll-grow {
+          0% {
+            opacity: 0;
+            transform: scaleX(0.4) scaleY(0.22) translateY(-4px);
+          }
+          86% {
+            opacity: 0;
+            transform: scaleX(0.42) scaleY(0.24) translateY(-4px);
+          }
+          96% {
+            opacity: 1;
+            transform: scaleX(0.9) scaleY(0.92) translateY(-1px);
+          }
+          100% {
+            opacity: 1;
+            transform: scaleX(1) scaleY(1) translateY(0);
+          }
+        }
+      `}</style>
       <model-viewer
         ref={viewerRef}
         src="/appareil.glb"
@@ -132,56 +193,234 @@ export default function Appareil3D({
         }}
       />
 
-      {currentTicket && showTicket && (
-        <div
-          className="absolute z-50 overflow-visible"
-          style={{
-            left: "50%",
-            top: isMobile ? "42%" : "43%",
-            width: isMobile ? "520px" : "760px",
-            height: isMobile ? "860px" : "1260px",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <model-viewer
-            key={`ticket-${ticketAnimationKey}-${isMobile ? "mobile" : "desktop"}`}
-            ref={ticketViewerRef}
-            src="/ticket-print.glb"
-            alt={`Ticket du projet ${currentTicket.title}`}
-            autoplay
-            animation-crossfade-duration="0"
-            interaction-prompt="none"
-            disable-zoom
-            camera-controls={false}
-            shadow-intensity="1"
-            exposure="1.1"
-            camera-orbit={isMobile ? "56deg 86deg 0.88m" : "56deg 86deg 1.02m"}
-            camera-target="0m -0.1m -2.18m"
-            field-of-view="22deg"
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              display: "block",
-              background: "transparent",
-              overflow: "visible",
-            }}
-          />
-
+      <div
+        className="absolute z-50 pointer-events-none overflow-visible"
+        style={{
+          left: "50%",
+          top: isMobile ? "49%" : "53%",
+          width: `${receiptWidth}px`,
+          height: `${receiptHeight}px`,
+          transform: "translate(-50%, -50%)",
+          marginTop: "0",
+          perspective: "1200px",
+        }}
+      >
+        {currentTicket && (
           <button
             onClick={onTicketClick}
             type="button"
             aria-label={`Ouvrir le projet ${currentTicket.title}`}
-            className="absolute pointer-events-auto cursor-pointer"
+            className="absolute overflow-visible pointer-events-auto will-change-transform"
             style={{
-              left: "50%",
-              top: isMobile ? "11%" : "10%",
-              width: isMobile ? "240px" : "340px",
-              height: isMobile ? "380px" : "520px",
-              transform: "translateX(-50%)",
-              background: "transparent",
+              position: "absolute",
+              zIndex: 60,
+              top: isMobile ? "12px" : "14px",
+              left: 0,
+              width: `${receiptWidth}px`,
+              height: `${receiptHeight}px`,
+              transformOrigin: "50% 0%",
+              transformStyle: "preserve-3d",
+              transform: showTicket
+                ? "translate3d(0, 0, 0) scaleY(1)"
+                : "translate3d(0, -4px, 0) scaleY(0.03)",
+              opacity: showTicket ? 1 : 0,
+              borderRadius: "0px",
+              filter: showTicket ? "blur(0)" : "blur(0.5px)",
+              animation: showTicket
+                ? "receipt-print 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards, receipt-settle 480ms ease-out 1380ms 1"
+                : "none",
             }}
-          />
-        </div>
-      )}
+          >
+            <div
+              className="relative overflow-hidden border border-black/10 bg-[#fffef8]"
+              style={{
+                height: `${mainPanelHeight}px`,
+                boxShadow: "0 18px 36px rgba(0, 0, 0, 0.14)",
+              }}
+            >
+              <div className="border-b border-dashed border-black/20 px-3 pb-3 pt-4 text-center text-black">
+                <div
+                  style={{
+                    fontFamily: "'Source Code Pro', sans-serif",
+                    fontSize: isMobile ? "9px" : "11px",
+                    letterSpacing: "0.22em",
+                    fontWeight: 700,
+                  }}
+                >
+                  SHANNON BUNDHOO
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'Source Code Pro', sans-serif",
+                    fontSize: isMobile ? "7px" : "9px",
+                    letterSpacing: "0.12em",
+                    marginTop: "4px",
+                    opacity: 0.72,
+                  }}
+                >
+                  PROJECT RECEIPT
+                </div>
+              </div>
+
+              <div className="px-3 py-3 text-black">
+                <div
+                  style={{
+                    fontFamily: "'Source Code Pro', monospace",
+                    fontSize: isMobile ? "6px" : "8px",
+                    lineHeight: 1.45,
+                    whiteSpace: "pre-wrap",
+                    opacity: 0.82,
+                  }}
+                >
+                  {currentTicket.description}
+                </div>
+
+                <div className="mt-3 flex items-end justify-between border-b border-dashed border-black/20 pb-2">
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: "'Source Code Pro', monospace",
+                        fontSize: isMobile ? "16px" : "22px",
+                        fontWeight: 700,
+                        letterSpacing: "0.04em",
+                      }}
+                    >
+                      {currentTicket.title.toUpperCase()}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "'Source Code Pro', monospace",
+                        fontSize: isMobile ? "6px" : "8px",
+                        opacity: 0.72,
+                        marginTop: "4px",
+                      }}
+                    >
+                      PARADOXE RADICAL
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      fontFamily: "'Source Code Pro', monospace",
+                      fontSize: isMobile ? "6px" : "8px",
+                      textAlign: "right",
+                      opacity: 0.72,
+                    }}
+                  >
+                    <div>04/2026</div>
+                    <div>01/2</div>
+                  </div>
+                </div>
+
+                <div className="mt-3 space-y-1">
+                  {[
+                    "IMAGE KEYFRAME",
+                    "PROJECT WORLD",
+                    "DETAIL LAYER",
+                    "VISUAL NOISE",
+                    "ARCHIVE TRACE",
+                  ].map((line, index) => (
+                    <div
+                      key={line}
+                      className="flex items-center justify-between"
+                      style={{
+                        fontFamily: "'Source Code Pro', monospace",
+                        fontSize: isMobile ? "6px" : "8px",
+                        letterSpacing: "0.04em",
+                      }}
+                    >
+                      <span>{line}</span>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="absolute left-1/2 origin-top overflow-hidden"
+              style={{
+                top: `${mainPanelHeight - 2}px`,
+                width: `${receiptWidth}px`,
+                height: `${straightTailHeight}px`,
+                transform: "translateX(-50%)",
+              }}
+            >
+              <div
+                className="absolute inset-x-0 top-0 overflow-hidden border-x border-black/10 bg-[#fffef8]"
+                style={{
+                  height: `${straightTailHeight}px`,
+                  transformOrigin: "50% 0%",
+                  boxShadow: "0 12px 18px rgba(0, 0, 0, 0.08)",
+                  animation: showTicket
+                    ? "receipt-tail-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    : "none",
+                }}
+              />
+            </div>
+
+            <div
+              className="absolute left-1/2 origin-top"
+              style={{
+                top: `${waveTop}px`,
+                width: `${receiptWidth - (isMobile ? 10 : 14)}px`,
+                height: isMobile ? "124px" : "168px",
+                transform: "translateX(-50%)",
+              }}
+            >
+              <div
+                className="absolute inset-0 overflow-hidden border border-black/10 bg-[#fffef8]"
+                style={{
+                  borderRadius: "0 0 999px 999px / 0 0 70px 70px",
+                  boxShadow: "0 12px 18px rgba(0, 0, 0, 0.08)",
+                  animation: showTicket
+                    ? "receipt-wave-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    : "none",
+                }}
+              />
+            </div>
+
+            <div
+              className="absolute left-1/2 origin-center"
+              style={{
+                top: `${rollTop}px`,
+                width: `${receiptWidth - (isMobile ? 44 : 62)}px`,
+                height: isMobile ? "26px" : "34px",
+                transform: "translateX(-50%)",
+              }}
+            >
+              <div
+                className="absolute inset-0 border border-black/10 bg-[#f6f1e4]"
+                style={{
+                  borderRadius: "999px",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.65), 0 6px 12px rgba(0, 0, 0, 0.08)",
+                  animation: showTicket
+                    ? "receipt-roll-grow 1380ms cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                    : "none",
+                }}
+              />
+            </div>
+
+            <div
+              className="absolute inset-x-0 flex justify-center"
+              style={{
+                top: `${receiptHeight - (isMobile ? 28 : 36)}px`,
+              }}
+            >
+              <div
+                style={{
+                  width: `${receiptWidth - (isMobile ? 16 : 22)}px`,
+                  height: isMobile ? "16px" : "22px",
+                  backgroundImage:
+                    "repeating-linear-gradient(90deg, rgba(0,0,0,0.95) 0 2px, transparent 2px 4px)",
+                  opacity: 0.9,
+                }}
+              />
+            </div>
+          </button>
+        )}
+      </div>
     </>
   );
 }

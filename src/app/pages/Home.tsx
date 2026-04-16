@@ -23,7 +23,6 @@ export default function Home() {
   const [isLocked, setIsLocked] = useState(false);
   const [showTicket, setShowTicket] = useState(false);
   const [currentTicket, setCurrentTicket] = useState<ProjectTicket | null>(null);
-  const [ticketAnimationKey, setTicketAnimationKey] = useState(0);
 
   useEffect(() => {
     const previousHtmlOverflow = document.documentElement.style.overflow;
@@ -90,8 +89,6 @@ const restoreInitialCamera = async () => {
 
     const randomTicket = PROJECTS[Math.floor(Math.random() * PROJECTS.length)];
     setCurrentTicket(randomTicket);
-    setTicketAnimationKey((key) => key + 1);
-
     setTimeout(() => {
       setShowTicket(true);
     }, 120);
@@ -140,7 +137,6 @@ const restoreInitialCamera = async () => {
             isLocked={isLocked}
             currentTicket={currentTicket}
             showTicket={showTicket}
-            ticketAnimationKey={ticketAnimationKey}
             onTicketClick={handleTicketClick}
             setInitialCamera={(camera) => {
               if (!initialCameraRef.current) {
