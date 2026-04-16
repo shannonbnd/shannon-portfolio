@@ -91,7 +91,7 @@ const restoreInitialCamera = async () => {
     setCurrentTicket(randomTicket);
     setTimeout(() => {
       setShowTicket(true);
-    }, 120);
+    }, 180);
 
     setTimeout(() => {
       setIsPrinting(false);
