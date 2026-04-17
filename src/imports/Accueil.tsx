@@ -91,7 +91,7 @@ import svgPaths from "./svg-fqlwtc3i54";
             className="absolute left-[252px] top-[5px] h-[70px] w-[170px] overflow-clip lg:hidden"
             data-name="Bouton commande"
           >
-            <div className="absolute left-[117px] top-[16px] h-[40px] w-[42px] overflow-clip bg-[rgba(255,255,255,0)]">
+            <div className="absolute left-[63px] top-[16px] h-[40px] w-[42px] overflow-clip bg-[rgba(255,255,255,0)]">
               <svg className="absolute block size-full" fill="none" viewBox="0 0 40.7116 38.5378">
                 <path d={svgPaths.p3c77bf80} fill="var(--fill-0, black)" />
                 <path d={svgPaths.p2aa5680} fill="var(--fill-0, black)" />
@@ -100,27 +100,13 @@ import svgPaths from "./svg-fqlwtc3i54";
               </svg>
             </div>
 
-            <div className="absolute left-[9px] top-[15px] size-[43px]">
-              <svg className="absolute block size-full" fill="none" viewBox="0 0 43 43">
-                <path d={svgPaths.pcb4e980} fill="var(--fill-0, black)" />
-                <path d={svgPaths.p3d14e440} fill="var(--fill-0, black)" />
-              </svg>
-            </div>
-
-            <div className="absolute left-[63px] top-[16px] h-[39px] w-[42px]">
+            <div className="absolute left-[9px] top-[16px] h-[39px] w-[42px]">
               <svg className="absolute block size-full" fill="none" viewBox="0 0 42 39">
                 <path d={svgPaths.p2f976080} fill="var(--fill-0, black)" />
                 <path d={svgPaths.p18aa3a80} fill="var(--fill-0, black)" />
                 <path d={svgPaths.p23994c00} fill="var(--fill-0, black)" />
               </svg>
             </div>
-          </div>
-
-          <div className={`absolute hidden lg:block ${HOME_LAYOUT.share}`} data-name="Bouton partage desktop">
-            <svg className="absolute block size-full" fill="none" viewBox="0 0 43 43">
-              <path d={svgPaths.pcb4e980} fill="var(--fill-0, black)" />
-              <path d={svgPaths.p3d14e440} fill="var(--fill-0, black)" />
-            </svg>
           </div>
 
           <div className={`absolute hidden lg:block ${HOME_LAYOUT.cv}`} data-name="Bouton cv desktop">
