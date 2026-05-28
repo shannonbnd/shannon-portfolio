@@ -57,6 +57,7 @@ export default function ResponsiveArtboard({
             width: `${baseWidth}px`,
             height: `${baseHeight}px`,
             transform: `scale(${scale})`,
+            overflow: "visible",
           }}
         >
           {children}

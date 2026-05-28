@@ -112,7 +112,7 @@ const restoreInitialCamera = async () => {
   };
 
   return (
-    <div className="relative flex h-[100dvh] w-full items-start justify-center overflow-hidden bg-background px-0">
+    <div className="relative flex h-[100dvh] w-full items-start justify-center bg-background px-0" style={{ overflowX: "clip" }}>
       <ResponsiveArtboard
         baseWidth={440}
         baseHeight={956}
