@@ -1,10 +1,10 @@
 export const HOME_LAYOUT = {
-  toggle: "left-[29px] top-[20px] lg:left-[-500px] lg:top-[34px]",
-  share: "left-[261px] top-[20px] h-[43px] w-[43px] lg:left-auto lg:right-[-384px] lg:top-[30px]",
-  cv: "left-[261px] top-[20px] h-[45px] w-[48px] lg:left-auto lg:right-[-384px] lg:top-[30px]",
-  gallery: "left-[315px] top-[20px] h-[46px] w-[50px] lg:left-auto lg:right-[-442px] lg:top-[30px]",
-  photo: "left-[63px] top-[820px] h-[98.625px] w-[309.75px] lg:top-[670px]",
-  email: "left-[93px] top-[830px] h-[57.375px] w-[250.875px] lg:top-[765px]",
+  toggle: "left-[6.5%] top-[2%] lg:left-[-500px] lg:top-[34px]",
+  share: "left-[59%] top-[2%] h-[4.5%] w-[9.8%] lg:left-auto lg:right-[-384px] lg:top-[30px]",
+  cv: "left-[59%] top-[2%] h-[4.7%] w-[10.9%] lg:left-auto lg:right-[-384px] lg:top-[30px]",
+  gallery: "left-[71.5%] top-[2%] h-[4.8%] w-[11.4%] lg:left-auto lg:right-[-442px] lg:top-[30px]",
+  photo: "left-[14%] top-[80%] h-[10.3%] w-[70.4%] lg:top-[70%] lg:left-[14.3%] lg:w-[70.4%]",
+  email: "left-[21%] top-[87%] h-[6%] w-[57%] lg:top-[80%] lg:left-[21.2%] lg:w-[57%]",
 
    device:
      "left-1/2 top-1/2 h-[420px] w-[540px] -translate-x-1/2 -translate-y-1/2",
