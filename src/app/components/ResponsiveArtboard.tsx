@@ -45,7 +45,7 @@ export default function ResponsiveArtboard({
     <div
       ref={containerRef}
       className={className}
-      style={{ maxWidth: `${baseWidth}px`, width: "100%" }}
+      style={{ maxWidth: `${baseWidth}px`, width: "100%", margin: "0 auto" }}
     >
       <div
         className="relative w-full"

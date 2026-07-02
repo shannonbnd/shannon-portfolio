@@ -19,12 +19,12 @@ export default function QcmCvPage() {
         />
       </button>
 
-      <ResponsiveArtboard baseWidth={440} baseHeight={971} className="relative w-full">
-        <div className="relative h-[971px] w-[440px] pt-[80px]">
-          <img
-            src="/CV_2026-alt_v1.png"
-            alt="QCM CV"
-            className="block w-full h-auto"
+      <ResponsiveArtboard baseWidth={440} baseHeight={1200} className="relative w-full">
+        <div className="relative h-[1200px] w-[440px] pt-[80px]">
+          <iframe
+            src="/CV.pdf"
+            title="CV Shannon Bundhoo"
+            className="block w-full h-full border-0"
           />
         </div>
       </ResponsiveArtboard>
