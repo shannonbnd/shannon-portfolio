@@ -150,7 +150,7 @@ export default function Appareil3D({
               transform: showTicket ? "translateY(8px)" : "translateY(-90px)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
-              clipPath: isMobile ? undefined : "inset(6px 0 0 0)",
+              clipPath: isMobile ? undefined : "inset(12px 0 0 0)",
             }}
           >
             <img
