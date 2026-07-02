@@ -37,37 +37,54 @@ export default function Home() {
     };
   }, []);
 
-const restoreInitialCamera = async () => {
-  const viewer = viewerRef.current;
-  const initialCamera = initialCameraRef.current;
+// Assigning camera properties (viewer.fieldOfView = ...) lands on wrong
+// values in model-viewer; only the attribute parsing path reproduces the
+// opening framing. Attributes are ignored when the string is unchanged,
+// so nudge the first number before restoring the exact configured value.
+const forceCameraAttribute = async (
+  viewer: any,
+  name: string,
+  value: string,
+) => {
+  const nudged = value.replace(
+    /-?\d+(\.\d+)?/,
+    (n) => `${parseFloat(n) + 0.0001}`,
+  );
 
-  if (!viewer || !initialCamera) return;
+  if (nudged !== value) {
+    viewer.setAttribute(name, nudged);
+    if (typeof viewer.jumpCameraToGoal === "function") {
+      viewer.jumpCameraToGoal();
+    }
+    await new Promise<void>((resolve) => {
+      requestAnimationFrame(() => resolve());
+    });
+  }
 
-  viewer.cameraControls = false;
-  viewer.cameraOrbit = initialCamera.orbit;
-  viewer.cameraTarget = initialCamera.target;
-  viewer.fieldOfView = initialCamera.fov;
-
-  // Force the viewer to snap back before the print animation starts.
+  viewer.setAttribute(name, value);
   if (typeof viewer.jumpCameraToGoal === "function") {
     viewer.jumpCameraToGoal();
   }
+};
 
-  if (typeof viewer.requestUpdate === "function") {
-    viewer.requestUpdate();
-  }
+const restoreInitialCamera = async () => {
+  const viewer = viewerRef.current;
+  if (!viewer) return;
+
+  const orbit = viewer.getAttribute("camera-orbit") ?? "0deg 90deg auto";
+  const target = viewer.getAttribute("camera-target") ?? "auto auto auto";
+  const fov = viewer.getAttribute("field-of-view") ?? "16deg";
+
+  // Restore the field of view first: the "auto" orbit radius is resolved
+  // against the current fov, so parsing the orbit under a stale fov lands
+  // on the wrong distance.
+  await forceCameraAttribute(viewer, "field-of-view", fov);
+  await forceCameraAttribute(viewer, "camera-target", target);
+  await forceCameraAttribute(viewer, "camera-orbit", orbit);
 
   await new Promise<void>((resolve) => {
     requestAnimationFrame(() => resolve());
   });
-
-  viewer.cameraOrbit = initialCamera.orbit;
-  viewer.cameraTarget = initialCamera.target;
-  viewer.fieldOfView = initialCamera.fov;
-
-  if (typeof viewer.jumpCameraToGoal === "function") {
-    viewer.jumpCameraToGoal();
-  }
 };
 
   const resetHomeState = () => {
