@@ -74,10 +74,23 @@ export default function Appareil3D({
           viewer.cameraTarget = target;
           viewer.fieldOfView = fov;
 
-          setInitialCamera({
-            orbit,
-            target,
-            fov,
+          if (typeof viewer.jumpCameraToGoal === "function") {
+            viewer.jumpCameraToGoal();
+          }
+
+          // Store the resolved numeric camera values rather than the "auto"
+          // keywords: re-assigning an identical "auto" string later is a
+          // no-op for model-viewer, which made the reset unreliable.
+          requestAnimationFrame(() => {
+            try {
+              setInitialCamera({
+                orbit: viewer.getCameraOrbit().toString(),
+                target: viewer.getCameraTarget().toString(),
+                fov: `${viewer.getFieldOfView()}deg`,
+              });
+            } catch {
+              setInitialCamera({ orbit, target, fov });
+            }
           });
         }}
         className="absolute z-10 pointer-events-auto"
@@ -85,7 +98,7 @@ export default function Appareil3D({
           display: "block",
           background: "transparent",
           overflow: "visible",
-          left: "50%",
+          left: isMobile ? "53%" : "50%",
           top: "45%",
           width: isMobile ? "520px" : "700px",
           height: isMobile ? "840px" : "1080px",
