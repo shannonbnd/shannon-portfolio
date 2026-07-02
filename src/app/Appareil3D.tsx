@@ -3,7 +3,7 @@ import { PROJECTS } from "../data/projects";
 
 type ProjectTicket = (typeof PROJECTS)[number];
 
-const DESKTOP_CAMERA_ORBIT = "-5deg 90deg auto";
+const DESKTOP_CAMERA_ORBIT = "-5deg 95deg auto";
 const MOBILE_CAMERA_ORBIT = "-5deg 90deg auto";
 const DESKTOP_CAMERA_TARGET = "auto auto auto";
 const MOBILE_CAMERA_TARGET = "auto auto auto";
@@ -150,7 +150,7 @@ export default function Appareil3D({
               transform: showTicket ? "translateY(8px)" : "translateY(-90px)",
               opacity: showTicket ? 1 : 0,
               borderRadius: "0px",
-              clipPath: isMobile ? undefined : "inset(12px 0 0 0)",
+              clipPath: isMobile ? undefined : "inset(6px 0 0 0)",
             }}
           >
             <img
