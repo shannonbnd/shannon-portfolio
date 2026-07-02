@@ -44,6 +44,52 @@ export default function Appareil3D({
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
+  // React 18 does not attach onLoad handlers to custom elements, so listen
+  // for model-viewer's "load" event manually to capture the initial camera.
+  useEffect(() => {
+    const viewer = viewerRef.current;
+    if (!viewer) return;
+
+    const captureInitialCamera = () => {
+      const mobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+      const orbit = mobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT;
+      const target = mobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET;
+      const fov = mobile ? MOBILE_FOV : DESKTOP_FOV;
+
+      viewer.cameraOrbit = orbit;
+      viewer.cameraTarget = target;
+      viewer.fieldOfView = fov;
+
+      if (typeof viewer.jumpCameraToGoal === "function") {
+        viewer.jumpCameraToGoal();
+      }
+
+      // Store the resolved numeric camera values rather than the "auto"
+      // keywords: re-assigning an identical "auto" string later is a
+      // no-op for model-viewer, which made the reset unreliable.
+      requestAnimationFrame(() => {
+        try {
+          setInitialCamera({
+            orbit: viewer.getCameraOrbit().toString(),
+            target: viewer.getCameraTarget().toString(),
+            fov: `${viewer.getFieldOfView()}deg`,
+          });
+        } catch {
+          setInitialCamera({ orbit, target, fov });
+        }
+      });
+    };
+
+    if (viewer.loaded) {
+      captureInitialCamera();
+    }
+
+    viewer.addEventListener("load", captureInitialCamera);
+    return () => viewer.removeEventListener("load", captureInitialCamera);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <model-viewer
@@ -59,40 +105,6 @@ export default function Appareil3D({
         disable-zoom={isLocked}
         reveal="auto"
         poster="/poster-appareil.png"
-        onLoad={() => {
-          const viewer = viewerRef.current;
-          if (!viewer) return;
-
-          const mobile =
-            typeof window !== "undefined" && window.innerWidth < 768;
-
-          const orbit = mobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT;
-          const target = mobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET;
-          const fov = mobile ? MOBILE_FOV : DESKTOP_FOV;
-
-          viewer.cameraOrbit = orbit;
-          viewer.cameraTarget = target;
-          viewer.fieldOfView = fov;
-
-          if (typeof viewer.jumpCameraToGoal === "function") {
-            viewer.jumpCameraToGoal();
-          }
-
-          // Store the resolved numeric camera values rather than the "auto"
-          // keywords: re-assigning an identical "auto" string later is a
-          // no-op for model-viewer, which made the reset unreliable.
-          requestAnimationFrame(() => {
-            try {
-              setInitialCamera({
-                orbit: viewer.getCameraOrbit().toString(),
-                target: viewer.getCameraTarget().toString(),
-                fov: `${viewer.getFieldOfView()}deg`,
-              });
-            } catch {
-              setInitialCamera({ orbit, target, fov });
-            }
-          });
-        }}
         className="absolute z-10 pointer-events-auto"
         style={{
           display: "block",
