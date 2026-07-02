@@ -50,35 +50,39 @@ export default function Appareil3D({
     const viewer = viewerRef.current;
     if (!viewer) return;
 
-    const captureInitialCamera = () => {
+    const captureInitialCamera = async () => {
       const mobile = typeof window !== "undefined" && window.innerWidth < 768;
 
       const orbit = mobile ? MOBILE_CAMERA_ORBIT : DESKTOP_CAMERA_ORBIT;
       const target = mobile ? MOBILE_CAMERA_TARGET : DESKTOP_CAMERA_TARGET;
       const fov = mobile ? MOBILE_FOV : DESKTOP_FOV;
 
-      viewer.cameraOrbit = orbit;
-      viewer.cameraTarget = target;
-      viewer.fieldOfView = fov;
-
-      if (typeof viewer.jumpCameraToGoal === "function") {
-        viewer.jumpCameraToGoal();
-      }
-
-      // Store the resolved numeric camera values rather than the "auto"
-      // keywords: re-assigning an identical "auto" string later is a
-      // no-op for model-viewer, which made the reset unreliable.
-      requestAnimationFrame(() => {
-        try {
-          setInitialCamera({
-            orbit: viewer.getCameraOrbit().toString(),
-            target: viewer.getCameraTarget().toString(),
-            fov: `${viewer.getFieldOfView()}deg`,
-          });
-        } catch {
-          setInitialCamera({ orbit, target, fov });
+      try {
+        // The JSX attributes already define the opening framing. Wait for
+        // model-viewer to finish applying them (framing is async), snap any
+        // in-flight interpolation, then read back the resolved values.
+        // Capturing too early recorded a pre-framing zoom level, which made
+        // the reset land far from the opening view.
+        if (viewer.updateComplete) {
+          await viewer.updateComplete;
         }
-      });
+
+        if (typeof viewer.jumpCameraToGoal === "function") {
+          viewer.jumpCameraToGoal();
+        }
+
+        await new Promise<void>((resolve) => {
+          requestAnimationFrame(() => resolve());
+        });
+
+        setInitialCamera({
+          orbit: viewer.getCameraOrbit().toString(),
+          target: viewer.getCameraTarget().toString(),
+          fov: `${viewer.getFieldOfView()}deg`,
+        });
+      } catch {
+        setInitialCamera({ orbit, target, fov });
+      }
     };
 
     if (viewer.loaded) {
