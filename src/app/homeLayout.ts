@@ -1,9 +1,9 @@
 export const HOME_LAYOUT = {
   toggle: "left-[6.5%] top-[3%] lg:left-[-500px] lg:top-[34px]",
-  share: "left-[62%] top-[3%] h-[4.5%] w-[9.8%] lg:left-auto lg:right-[-384px] lg:top-[30px]",
-  cv: "left-[62%] top-[3%] h-[4.7%] w-[10.9%] lg:left-auto lg:right-[-384px] lg:top-[30px]",
-  gallery: "left-[75%] top-[3%] h-[4.8%] w-[11.4%] lg:left-auto lg:right-[-442px] lg:top-[30px]",
-  photo: "left-[14%] top-[63%] h-[10.3%] w-[70.4%] lg:top-[70%] lg:left-[14.3%] lg:w-[70.4%]",
+  share: "left-[67%] top-[3%] h-[4.5%] w-[9.8%] lg:left-[73%] lg:top-[3%]",
+  cv: "left-[67%] top-[3%] h-[4.7%] w-[10.9%] lg:left-[73%] lg:top-[3%]",
+  gallery: "left-[80%] top-[3%] h-[4.8%] w-[11.4%] lg:left-[85%] lg:top-[3%]",
+  photo: "left-[14%] top-[66%] h-[10.3%] w-[70.4%] lg:top-[70%] lg:left-[14.3%] lg:w-[70.4%]",
   email: "left-[21%] top-[76%] h-[6%] w-[57%] lg:top-[80%] lg:left-[21.2%] lg:w-[57%]",
 
    device:
