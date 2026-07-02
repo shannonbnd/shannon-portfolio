@@ -127,7 +127,7 @@ export default function Appareil3D({
         className="absolute z-50 pointer-events-none overflow-visible"
         style={{
           left: "50%",
-          top: isMobile ? "52%" : "57%",
+          top: isMobile ? "65%" : "67%",
           width: isMobile ? "145px" : "220px",
           height: isMobile ? "200px" : "330px",
           transform: "translate(-50%, -50%)",
