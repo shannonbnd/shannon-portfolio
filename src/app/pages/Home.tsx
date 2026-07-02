@@ -117,7 +117,7 @@ const restoreInitialCamera = async () => {
         baseWidth={440}
         baseHeight={956}
         maxScale={2.4}
-        className="relative h-[100dvh] w-full self-start"
+        className="relative h-[100dvh] self-start"
       >
         <div className="relative h-[956px] w-[440px] overflow-visible">
           <div className="absolute inset-0 z-0 pointer-events-none">
