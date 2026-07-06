@@ -5,6 +5,10 @@
       "handle": "filesystem"
     },
     {
+      "src": "/camouflage/?",
+      "dest": "/camouflage/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
